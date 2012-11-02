@@ -2,8 +2,8 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
+var mainLoader = require("../index");
 module.exports = function() {
-	this.cacheable && this.cacheable();
-	require("./index.js").apply(this, arguments);
+	return mainLoader.apply(this, arguments);
 }
-module.exports.seperable = true;
+module.exports.separable = true;
