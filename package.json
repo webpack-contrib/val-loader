@@ -1,6 +1,6 @@
 {
 	"name": "val-loader",
-	"version": "0.2.0",
+	"version": "0.5.0",
 	"author": "Tobias Koppers @sokra",
 	"description": "val loader module for webpack",
 	"dependencies": {
@@ -11,6 +11,5 @@
 			"type": "MIT",
 			"url": "http://www.opensource.org/licenses/mit-license.php"
 		}
-	],
-	"license": "MIT"
+	]
 }

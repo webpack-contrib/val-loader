@@ -14,7 +14,7 @@ module.exports = function() {
 	} else {
 		var arr = Array.prototype.slice.call(arguments, 0);
 		for(var i = 0, l = arr.length; i < l; i++)
-			arr[i] = this.exec(arr[i], this.filenames[i]);
+			arr[i] = this.exec(arr[i], this.resource);
 		arr.unshift(null);
 		this.callback.apply(null, arr);
 	}
