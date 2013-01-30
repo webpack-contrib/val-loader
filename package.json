@@ -4,7 +4,7 @@
 	"author": "Tobias Koppers @sokra",
 	"description": "val loader module for webpack",
 	"dependencies": {
-		"loader-utils": "0.1.x"
+		"loader-utils": "0.2.x"
 	},
 	"licenses": [
 		{
