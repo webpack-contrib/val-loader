@@ -10,6 +10,6 @@ module.exports = function(content) {
 	if(this.inputValue) {
 		return null, this.inputValue;
 	} else {
-		return this.exec(content, this.request);
+		return this.exec(content, this.resource);
 	}
 }
