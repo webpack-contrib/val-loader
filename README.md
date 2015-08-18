@@ -4,14 +4,14 @@
 
 ``` javascript
 var a = require("val!./file.js");
-// => excute file.js while compiling and 
+// => execute file.js while compiling and 
 //    take the result as javascript code for including
 ```
 
 Don't forget to polyfill `require` if you want to use it in node.
 See `webpack` documentation.
 
-The excution of file.js has polyfill already applied.
+The execution of file.js has polyfill already applied.
 
 This loader is also useful if you want to provide data for another loader:
 
