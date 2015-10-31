@@ -19,6 +19,11 @@ This loader is also useful if you want to provide data for another loader:
 require("css!val!./generateCss.js");
 ```
 
+## Caching
+
+If the result of executing the module is deterministic you can enable caching
+by adding the `cacheable` query parameter.
+
 ## License
 
 MIT (http://www.opensource.org/licenses/mit-license.php)
