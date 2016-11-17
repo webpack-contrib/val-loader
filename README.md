@@ -3,7 +3,7 @@
 ## Usage
 
 ``` javascript
-var a = require("val!./file.js");
+var a = require("val-loader!./file.js");
 // => excute file.js while compiling and 
 //    take the result as javascript code for including
 ```
@@ -16,7 +16,7 @@ The excution of file.js has polyfill already applied.
 This loader is also useful if you want to provide data for another loader:
 
 ``` javascript
-require("css!val!./generateCss.js");
+require("css-loader!val-loader!./generateCss.js");
 ```
 
 ## License
