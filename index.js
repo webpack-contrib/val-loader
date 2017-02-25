@@ -4,7 +4,7 @@
 */
 var loaderUtils = require("loader-utils");
 module.exports = function(content) {
-	var query = loaderUtils.parseQuery(this.query);
+	var query = loaderUtils.getOptions(this) || {};
 	if(query.cacheable && this.cacheable)
 		this.cacheable();
 	if(this.inputValue) {
