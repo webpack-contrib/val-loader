@@ -39,3 +39,6 @@ jspm_packages
 # Test coverage data
 .nyc_output
 coverage
+
+# Webpack output
+test/output
