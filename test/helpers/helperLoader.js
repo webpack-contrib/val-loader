@@ -1,4 +1,4 @@
-'use strict';
+
 
 function helperLoader() {
   // Discards the content

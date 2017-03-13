@@ -1,8 +1,7 @@
-'use strict';
-
 function args() {
   return {
-    value: Array.from(arguments),
+    // We can't use rest parameters here because this code is not touched by babel
+    value: Array.from(arguments), // eslint-disable-line prefer-rest-params
   };
 }
 

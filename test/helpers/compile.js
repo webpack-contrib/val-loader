@@ -1,9 +1,9 @@
-'use strict';
+
 
 const path = require('path');
 const webpack = require('webpack');
 
-const valLoader = require.resolve('../../lib/loader.js');
+const valLoader = require.resolve('../../src');
 const helperLoader = require.resolve('./helperLoader.js');
 const fixturePath = path.resolve(__dirname, '..', 'fixtures');
 const outputPath = path.resolve(__dirname, '..', 'output');

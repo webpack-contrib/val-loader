@@ -1,7 +1,5 @@
-'use strict';
-
-const path = require('path');
-const loaderUtils = require('loader-utils');
+import path from 'path';
+import loaderUtils from 'loader-utils';
 
 function rel(p) {
   return path.relative(process.cwd(), p);
@@ -25,12 +23,8 @@ function processResult(loaderContext, result) {
   // results tend to be not cacheable when this loader is necessary
   loaderContext.cacheable(Boolean(result.cacheable));
 
-  loaderContext.callback.apply(
-    loaderContext,
-    // null because there was no error
-    [null]
-      .concat(result.value)
-  );
+  loaderContext.callback(...[null]
+      .concat(result.value));
 }
 
 function valLoader(content) {
@@ -57,3 +51,4 @@ function valLoader(content) {
 }
 
 module.exports = valLoader;
+export default valLoader;

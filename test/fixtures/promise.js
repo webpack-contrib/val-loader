@@ -1,5 +1,3 @@
-'use strict';
-
 function promise() {
   return Promise.resolve({
     cacheable: true,

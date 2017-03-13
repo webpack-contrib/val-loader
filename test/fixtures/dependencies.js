@@ -1,5 +1,3 @@
-'use strict';
-
 function dependencies() {
   return {
     dependencies: [

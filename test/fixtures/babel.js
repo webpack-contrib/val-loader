@@ -1,5 +1,3 @@
-'use strict';
-
 function babel() {
   return {
     value: ['Hello from babel fixture'],

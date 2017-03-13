@@ -1,5 +1,3 @@
-'use strict';
-
 function simple() {
   return {
     value: ['Hello from simple fixture'],
