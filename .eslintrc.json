@@ -3,5 +3,9 @@
   "parserOptions": {
     // We're using CommonJS which runs in script mode
     "sourceType": "script"
+  },
+  "rules": {
+    // We can't use spread with node v4. Remove this if node v4 is officially not supported anymore
+    "prefer-spread": "off"
   }
 }
