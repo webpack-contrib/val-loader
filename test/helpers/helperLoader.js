@@ -1,0 +1,13 @@
+'use strict';
+
+function helperLoader() {
+  // Discards the content
+  return '';
+}
+
+helperLoader.pitch = function pitch() {
+  // Extend loader context with mocks
+  Object.assign(this, this.query);
+};
+
+module.exports = helperLoader;
