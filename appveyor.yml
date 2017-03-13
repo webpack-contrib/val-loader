@@ -1,0 +1,19 @@
+# appveyor file
+# http://www.appveyor.com/docs/appveyor-yml
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node $env:nodejs_version x64
+  - npm install
+
+build: off
+
+matrix:
+  fast_finish: true
+
+test_script:
+  - node --version
+  - npm --version
+  - cmd: npm run test
