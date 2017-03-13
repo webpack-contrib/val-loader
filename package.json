@@ -1,16 +1,25 @@
 {
-	"name": "val-loader",
-	"version": "0.5.1",
-	"author": "Tobias Koppers @sokra",
-	"description": "val loader module for webpack",
-	"main": "lib/loader.js",
-	"dependencies": {
-		"loader-utils": "^1.0.2"
+  "name": "val-loader",
+  "version": "0.5.1",
+  "author": "Tobias Koppers @sokra",
+  "description": "val loader module for webpack",
+  "main": "lib/loader.js",
+	"scripts": {
+		"posttest": "npm run lint",
+		"lint": "eslint --ignore-path .gitignore lib test"
 	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.php"
-		}
-	]
+  "dependencies": {
+    "loader-utils": "^1.0.2"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-webpack": "^1.1.0",
+    "eslint-plugin-import": "^2.2.0"
+  }
 }
