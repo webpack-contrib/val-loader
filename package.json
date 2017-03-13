@@ -11,15 +11,15 @@
   "dependencies": {
     "loader-utils": "^1.0.2"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-config-webpack": "^1.1.0",
     "eslint-plugin-import": "^2.2.0"
-  }
+  },
+	"licenses": "MIT",
+	"files": [
+		"lib",
+		"README.md",
+		"LICENSE"
+	]
 }
