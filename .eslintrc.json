@@ -1,3 +1,7 @@
 {
-	"extends": "webpack"
+  "extends": "webpack",
+  "parserOptions": {
+    // We're using CommonJS which runs in script mode
+    "sourceType": "script"
+  }
 }
