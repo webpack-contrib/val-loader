@@ -3,6 +3,7 @@
 	"version": "0.5.1",
 	"author": "Tobias Koppers @sokra",
 	"description": "val loader module for webpack",
+	"main": "lib/loader.js",
 	"dependencies": {
 		"loader-utils": "^1.0.2"
 	},
