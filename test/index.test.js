@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 const compile = require('./helpers/compile');
 
@@ -7,17 +5,36 @@ function rel(p) {
   return path.relative(process.cwd(), p);
 }
 
-test('should pass on the value of the simple fixture', () =>
+test('should pass on the code from the simple fixture', () =>
   compile('simple')
     .then((result) => {
-      expect(result.inspect.arguments).toEqual(['Hello from simple fixture']);
+      expect(result.inspect.arguments).toEqual([
+        'Hello from simple fixture',
+        { isASourceMap: true },
+        { isAnAst: true },
+      ]);
+    }),
+);
+
+test('should pass on the code from the buffer fixture', () =>
+  compile('buffer')
+    .then((result) => {
+      expect(result.inspect.arguments).toEqual([
+        Buffer.from('Hello from buffer fixture'),
+        { isASourceMap: true },
+        { isAnAst: true },
+      ]);
     }),
 );
 
 test('should recognize modules produced by babel', () =>
   compile('babel')
     .then((result) => {
-      expect(result.inspect.arguments).toEqual(['Hello from babel fixture']);
+      expect(result.inspect.arguments).toEqual([
+        'Hello from babel fixture',
+        null,
+        null,
+      ]);
     }),
 );
 
@@ -26,7 +43,7 @@ test('should call the function with the loader options', () => {
 
   return compile('args', loaderOptions)
     .then((result) => {
-      expect(result.inspect.arguments[0]).toBe(loaderOptions);
+      expect(result.inspect.arguments[2][0]).toBe(loaderOptions);
     });
 });
 
@@ -90,7 +107,11 @@ test('should work the same if a promise is returned', () => {
 
   return compile('promise', loaderOptions, loaderContext)
     .then((result) => {
-      expect(result.inspect.arguments).toEqual(['This value is asynchronous']);
+      expect(result.inspect.arguments).toEqual([
+        'Hello from promise fixture',
+        { isASourceMap: true },
+        { isAnAst: true },
+      ]);
       expect(cacheable).toBe(true);
     });
 });
@@ -126,7 +147,7 @@ test('should throw a useful error message if the exported function returns a wro
     (err) => {
       const p = rel(require.resolve('./fixtures/error-return-sync-wrong-obj.js'));
 
-      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a value property.`);
+      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a 'code' property.`);
     }),
 );
 
@@ -138,30 +159,52 @@ test('should throw a useful error message if the exported function returns a wro
     (err) => {
       const p = rel(require.resolve('./fixtures/error-return-async-wrong-obj.js'));
 
-      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a value property.`);
+      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a 'code' property.`);
     }),
 );
 
-test('should throw a useful error message if the exported function returns a value that is not an array (sync)', () =>
-  compile('error-return-sync-no-array-value')
+test('should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (sync)', () =>
+  compile('error-return-sync-invalid-code')
     .then(() => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-sync-no-array-value.js'));
+      const p = rel(require.resolve('./fixtures/error-return-sync-invalid-code.js'));
 
-      expect(err.message).toContain(`The returned value of module ${rel(p)} is not an array.`);
+      expect(err.message).toContain(`The returned code of module ${rel(p)} is neither a string nor an instance of Buffer.`);
     }),
 );
 
-test('should throw a useful error message if the exported function returns a value that is not an array (async)', () =>
-  compile('error-return-async-no-array-value')
+test('should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (async)', () =>
+  compile('error-return-async-invalid-code')
     .then(() => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-async-no-array-value.js'));
+      const p = rel(require.resolve('./fixtures/error-return-async-invalid-code.js'));
 
-      expect(err.message).toContain(`The returned value of module ${rel(p)} is not an array.`);
+      expect(err.message).toContain(`The returned code of module ${rel(p)} is neither a string nor an instance of Buffer.`);
+    }),
+);
+
+test('should not swallow function call errors (sync)', () =>
+  compile('error-call-sync')
+    .then(() => {
+      throw new Error('Should not be resolved');
+    },
+    (err) => {
+      expect(err.message).toContain('Calling the function failed');
+      expect(err.message).toContain(require.resolve('./fixtures/error-call-sync.js'));
+    }),
+);
+
+test('should not swallow function call errors (async)', () =>
+  compile('error-call-async')
+    .then(() => {
+      throw new Error('Should not be resolved');
+    },
+    (err) => {
+      expect(err.message).toContain('Calling the function failed asynchronously');
+      expect(err.message).toContain(require.resolve('./fixtures/error-call-async.js'));
     }),
 );

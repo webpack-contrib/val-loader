@@ -6,25 +6,25 @@ function rel(p) {
 }
 
 function processResult(loaderContext, result) {
-  if (!result || typeof result !== 'object' || 'value' in result === false) {
-    loaderContext.callback(new Error(`The returned result of module ${rel(loaderContext.resource)} is not an object with a value property.`));
+  if (!result || typeof result !== 'object' || 'code' in result === false) {
+    loaderContext.callback(new Error(`The returned result of module ${rel(loaderContext.resource)} is not an object with a 'code' property.`));
 
     return;
   }
-  if (Array.isArray(result.value) === false) {
-    loaderContext.callback(new Error(`The returned value of module ${rel(loaderContext.resource)} is not an array.`));
+
+  if (typeof result.code !== 'string' && result.code instanceof Buffer === false) {
+    loaderContext.callback(new Error(`The returned code of module ${rel(loaderContext.resource)} is neither a string nor an instance of Buffer.`));
 
     return;
   }
 
   (result.dependencies || [])
     .forEach(dep => loaderContext.addDependency(dep));
-  // defaults to false which is a good default here because we assume that
+  // Defaults to false which is a good default here because we assume that
   // results tend to be not cacheable when this loader is necessary
   loaderContext.cacheable(Boolean(result.cacheable));
 
-  loaderContext.callback(...[null]
-      .concat(result.value));
+  loaderContext.callback(null, result.code, result.sourceMap || null, result.ast || null);
 }
 
 function valLoader(content) {

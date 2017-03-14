@@ -4,7 +4,7 @@ function dependencies() {
       require.resolve('./args.js'),
       require.resolve('./simple.js'),
     ],
-    value: [],
+    code: '',
   };
 }
 

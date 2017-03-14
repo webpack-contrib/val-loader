@@ -1,6 +1,6 @@
 function babel() {
   return {
-    value: ['Hello from babel fixture'],
+    code: 'Hello from babel fixture',
   };
 }
 

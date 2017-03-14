@@ -1,7 +1,9 @@
 function promise() {
   return Promise.resolve({
     cacheable: true,
-    value: ['This value is asynchronous'],
+    code: 'Hello from promise fixture',
+    sourceMap: { isASourceMap: true },
+    ast: { isAnAst: true },
   });
 }
 

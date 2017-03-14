@@ -8,16 +8,21 @@ const helperLoader = require.resolve('./helperLoader.js');
 const fixturePath = path.resolve(__dirname, '..', 'fixtures');
 const outputPath = path.resolve(__dirname, '..', 'output');
 
+const rawFixtures = [
+  'buffer',
+];
+
 function compile(fixture, loaderOptions, loaderContext) {
   return new Promise((resolve, reject) => {
     const entry = path.resolve(fixturePath, `${fixture}.js`);
+    const raw = rawFixtures.indexOf(fixture) !== -1;
     let inspect;
 
     webpack({
       entry,
       output: {
         path: outputPath,
-        filename: 'bundle.js',
+        filename: 'bundle', // omitting the js extension to prevent jest's watcher from triggering
       },
       module: {
         rules: [{
@@ -26,7 +31,7 @@ function compile(fixture, loaderOptions, loaderContext) {
             loader: helperLoader,
             options: loaderContext,
           }, {
-            loader: 'inspect-loader',
+            loader: `inspect-loader${raw ? '/raw' : ''}`,
             options: {
               callback(i) {
                 inspect = i;
@@ -46,7 +51,7 @@ function compile(fixture, loaderOptions, loaderContext) {
         const message = typeof problem === 'string' ? problem : 'Unexpected error';
         const error = problem.message ? problem : new Error(message);
 
-        error.originalError = err;
+        error.originalError = problem;
         error.stats = stats;
 
         reject(error);

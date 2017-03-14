@@ -1,7 +1,7 @@
 function cacheable() {
   return {
     cacheable: true,
-    value: [],
+    code: '',
   };
 }
 
