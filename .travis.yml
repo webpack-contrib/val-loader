@@ -1,21 +1,5 @@
-os:
-  - linux
-  - osx
-language: node_js
-node_js:
-  - '4'
-  - '6'
-  - '7'
-script:
-  - 'yarn run travis:$JOB_PART'
-after_success:
-  - 'bash <(curl -s https://codecov.io/bash)'
-before_script:
-  - |-
-    if [ "$WEBPACK_VERSION" ]; then
-      yarn add webpack@^$WEBPACK_VERSION
-    fi
 sudo: false
+language: node_js
 branches:
   only:
     - master
@@ -37,3 +21,12 @@ matrix:
 before_install:
   - nvm --version
   - node --version
+before_script:
+  - |-
+    if [ "$WEBPACK_VERSION" ]; then
+      yarn add webpack@^$WEBPACK_VERSION
+    fi
+script:
+  - 'yarn run travis:$JOB_PART'
+after_success:
+  - 'bash <(curl -s https://codecov.io/bash)'
