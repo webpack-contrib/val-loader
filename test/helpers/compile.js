@@ -49,7 +49,7 @@ function compile(fixture, loaderOptions, loaderContext) {
 
       if (problem) {
         const message = typeof problem === 'string' ? problem : 'Unexpected error';
-        const error = problem.message ? problem : new Error(message);
+        const error = new Error(problem.message || message);
 
         error.originalError = problem;
         error.stats = stats;
