@@ -1,5 +1,6 @@
 const path = require('path');
 const compile = require('./helpers/compile');
+const bufferFromStr = require('./helpers/bufferFromStr');
 
 function rel(p) {
   return path.relative(process.cwd(), p);
@@ -20,7 +21,7 @@ test('should pass on the code from the buffer fixture', () =>
   compile('buffer')
     .then((result) => {
       expect(result.inspect.arguments).toEqual([
-        Buffer.from('Hello from buffer fixture'),
+        bufferFromStr('Hello from buffer fixture'),
         { isASourceMap: true },
         { isAnAst: true },
       ]);
@@ -77,7 +78,7 @@ test('should flag the module as cacheable if requested', () => {
     });
 });
 
-test('should flag the module as cacheable if requested', () => {
+test('should flag dependencies of the module', () => {
   const dependencies = [];
   const loaderOptions = {};
   const loaderContext = {
