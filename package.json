@@ -1,6 +1,6 @@
 {
   "name": "val-loader",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "author": "Tobias Koppers @sokra",
   "description": "val loader module for webpack",
   "main": "dist/index.js",
