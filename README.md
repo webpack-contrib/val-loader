@@ -66,11 +66,11 @@ function findAnswer(options) {
     return ask(options.question)
         .then(generateResult)
         .then(result => ({
-            
+
             code: result.code,
             sourceMap: result.sourceMap,
             ast: result.abstractSyntaxTree,
-            
+
             // Mark dependencies of findAnswer().
             // The function will be re-executed if one of these
             // dependencies has changed in watch mode.
@@ -79,7 +79,7 @@ function findAnswer(options) {
                 require.resolve('./ask.js'),
                 require.resolve('./generateResult.js')
             ],
-            
+
             // Flag the generated code as cacheable.
             // If none of the dependencies have changed,
             // the function won't be executed again.
@@ -141,7 +141,7 @@ Property | Type | Description
 `code`   | `string|Buffer` | **Required**. The code that is passed to the next loader or to webpack.
 `sourceMap` | [`SourceMap`](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit) | **Optional**. Will be passed to the next loader or to webpack.
 `ast` | `any` | **Optional**. An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST.
-`dependencies` | `Array<string>` | **Default: `[]`**. An array of absolute, native paths to file dependencies that need to be watched for changes. 
+`dependencies` | `Array<string>` | **Default: `[]`**. An array of absolute, native paths to file dependencies that need to be watched for changes.
 `cacheable` | `boolean` | **Default: `false`**. Flag whether the code can be re-used in watch mode if none of the `dependencies` have changed.
 
 ### Loader Options
@@ -198,8 +198,8 @@ The **val-loader** itself has no options. The options are passed as they are (wi
 [appveyor-url]: https://ci.appveyor.com/project/jhnns/val-loader/branch/master
 [appveyor]: https://ci.appveyor.com/api/projects/status/github/webpack-contrib/val-loader?svg=true
 
-[cover]: https://coveralls.io/repos/github/webpack-contrib/val-loader/badge.svg
-[cover-url]: https://coveralls.io/github/webpack-contrib/val-loader
+[cover]: https://codecov.io/gh/webpack-contrib/val-loader/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/val-loader
 
 [chat]: https://badges.gitter.im/webpack-contrib/webpack.svg
 [chat-url]: https://gitter.im/webpack-contrib/webpack
