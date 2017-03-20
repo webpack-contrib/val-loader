@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Tobias Koppers @sokra",
   "description": "val loader module for webpack",
-  "main": "dist/index.js",
+  "main": "dist/cjs.js",
   "scripts": {
     "test": "jest",
     "posttest": "npm run lint",
@@ -21,21 +21,23 @@
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
     "travis:coverage": "yarn run test:coverage",
     "travis:lint": "yarn run lint && yarn run security",
-    "travis:test": "yarn run test"
+    "travis:test": "yarn run test",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
-    "loader-utils": "^1.0.2"
+    "loader-utils": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-jest": "^19.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.2.1",
+    "babel-preset-env": "^1.2.2",
     "chai": "^3.5.0",
     "cross-env": "^3.2.3",
     "del-cli": "^0.2.1",
-    "eslint": "^3.17.1",
-    "eslint-config-webpack": "^1.1.0",
+    "eslint": "^3.18.0",
+    "eslint-config-webpack": "^1.1.1",
     "eslint-plugin-import": "^2.2.0",
     "inspect-loader": "^1.0.0",
     "jest": "^19.0.2",
@@ -47,7 +49,7 @@
     "pre-commit": "^1.2.2",
     "standard-version": "^4.0.0",
     "webpack": "^2.2.1",
-    "webpack-defaults": "^0.2.1"
+    "webpack-defaults": "^0.4.2"
   },
   "licenses": "MIT",
   "files": [

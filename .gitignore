@@ -12,3 +12,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 /test/output
+
+logs
+*.log
+npm-debug.log*
