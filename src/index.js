@@ -50,5 +50,4 @@ function valLoader(content) {
   processResult(this, result);
 }
 
-module.exports = valLoader;
 export default valLoader;
