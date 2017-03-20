@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Tobias Koppers @sokra",
   "description": "val loader module for webpack",
-  "main": "dist/index.js",
+  "main": "dist/cjs.js",
   "scripts": {
     "test": "jest",
     "posttest": "npm run lint",
