@@ -1,6 +1,5 @@
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
-[![npm-stats][npm-stats]][npm-url]
 [![deps][deps]][deps-url]
 [![travis][travis]][travis-url]
 [![appveyor][appveyor]][appveyor-url]
@@ -8,140 +7,156 @@
 [![chat][chat]][chat-url]
 
 <div align="center">
-  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200" vspace="" hspace="25"
+    <img width="200" height="200"
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>Val Loader</h1>
-  <p>Executes the given module to generate source code on build time.<p>
+  <p>Executes the given module to generate source code on build time<p>
 </div>
 
 <h2 align="center">Install</h2>
 
 ```bash
-npm install val-loader --save-dev
-```
-
-<h2 align="center">Examples</h2>
-
-If you have a module `findAnswer.js` like this:
-
-```js
-function findAnswer() {
-    return {
-        code: 'module.exports = 42;'
-    };
-}
-
-module.exports = findAnswer;
-```
-
-you can use the **val-loader** to generate source code on build time:
-
-```js
-// webpack.config.js
-module.exports = {
-    ...
-    module: {
-        rules: [{
-            test: require.resolve('path/to/findAnswer.js'),
-            use: [{
-                loader: 'val-loader'
-            }]
-        }]
-    }
-};
-```
-
----
-
-A complete example of all available features looks like this:
-
-```js
-const ask = require('./ask.js');
-const generateResult = require('./generateResult.js');
-
-function findAnswer(options) {
-    return ask(options.question)
-        .then(generateResult)
-        .then(result => ({
-
-            code: result.code,
-            sourceMap: result.sourceMap,
-            ast: result.abstractSyntaxTree,
-
-            // Mark dependencies of findAnswer().
-            // The function will be re-executed if one of these
-            // dependencies has changed in watch mode.
-            dependencies: [
-                // Array of absolute native paths!
-                require.resolve('./ask.js'),
-                require.resolve('./generateResult.js')
-            ],
-
-            // Flag the generated code as cacheable.
-            // If none of the dependencies have changed,
-            // the function won't be executed again.
-            cacheable: true
-
-        }));
-}
-
-module.exports = findAnswer;
-```
-
-```js
-// webpack.config.js
-module.exports = {
-    ...
-    module: {
-        rules: [{
-            test: require.resolve('path/to/findAnswer.js'),
-            use: [{
-                loader: 'val-loader',
-                options: {
-                    question: 'What is the meaning of life?'
-                }
-            }]
-        }]
-    }
-};
+npm i -D val-loader
 ```
 
 <h2 align="center">Usage</h2>
 
-The module that is loaded with this loader must stick to the following interfaces:
+The module that is loaded with this loader must stick to the following interfaces.
 
-### Expected module interface
+### `Module Interface`
 
-The loaded module must export a function as `default` export with the following *function interface*.
+The loaded module must export a function as `default` export with the following *Function Interface*.
 
 ```js
-module.exports = function (...) { ... };
+module.exports = function () {...};
 ```
 
 Modules transpiled by [Babel](https://babeljs.io/) are also supported.
 
 ```js
-export default function (...) { ... }
+export default function () {...};
 ```
 
-### Expected function interface
+### `Function Interface`
 
 The function will be called with the loader [`options`](https://webpack.js.org/configuration/module/#useentry) and must either return:
 
-- an object with the following *object interface* or
-- a promise that resolves to the following *object interface*
+**`{Object}`**
 
-### Expected object interface
+Following *Object Interface*
 
-Property | Type | Description
-:--------|:-----|:-----------
-`code`   | `string\|Buffer` | **Required**. The code that is passed to the next loader or to webpack.
-`sourceMap` | [`SourceMap`](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit) | **Optional**. Will be passed to the next loader or to webpack.
-`ast` | `any` | **Optional**. An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST.
-`dependencies` | `Array<string>` | **Default: `[]`**. An array of absolute, native paths to file dependencies that need to be watched for changes.
+**`{Promise}`**
+
+That resolves to following the *Object Interface*
+
+### `Object Interface`
+
+|Name|Type|Default|Description|
+|:---|:--:|:-----:|:----------|
+|**`code`**|`{String\|Buffer}`|`undefined`|**Required**. The code that is passed to the next loader or to webpack|
+|**`sourceMap`**| [`{Object}`](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit)|`undefined`|**Optional**. Will be passed to the next loader or to webpack|
+|**`ast`**|`{Array<{Object}>}`|**Optional**. An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST|
+|**`dependencies`**|`{Array<{String}>}`|`[]`|An array of absolute, native paths to file dependencies that need to be watched for changes.
+|**`cacheable`**|`{Boolean}`|`false`|Flag whether the code can be re-used in watch mode if none of the `dependencies` have changed|
+
+<h2 align="center">Options</h2>
+
+The **val-loader** itself has no options. The options are passed as they are (without cloning them) to the exported function.
+
+<h2 align="center">Examples</h2>
+
+If you have a module like this:
+
+**`answer.js`**
+```js
+function answer () {
+  return {
+    code: 'module.exports = 42;'
+  }
+};
+
+module.exports = answer;
+```
+
+you can use the **val-loader** to generate source code on build time:
+
+**`webpack.config.js`**
+```js
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: require.resolve('path/to/answer.js'),
+        use: [
+          {
+            loader: 'val-loader'
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
+### `Complete`
+
+A complete example of all available features looks like this:
+
+**`answer.js`**
+```js
+const ask = require('./ask.js');
+const generate = require('./generate.js');
+
+function answer(options) {
+  return ask(options.question)
+    .then(generate)
+    .then(result => ({
+      ast: result.abstractSyntaxTree,
+      code: result.code,
+      // Mark dependencies of answer().
+      // The function will be re-executed if one of these
+      // dependencies has changed in watch mode.
+      dependencies: [
+        // Array of absolute native paths!
+        require.resolve('./ask.js'),
+        require.resolve('./generate.js')
+      ],
+      // Flag the generated code as cacheable.
+      // If none of the dependencies have changed,
+      // the function won't be executed again.
+      cacheable: true
+      sourceMap: result.sourceMap,
+    })
+  );
+}
+
+module.exports = answer;
+```
+
+**`webpack.config.js`**
+```js
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: require.resolve('path/to/answer.js'),
+        use: [
+          {
+            loader: 'val-loader',
+            options: {
+              question: 'What is the meaning of life?'
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
 `contextDependencies` | `Array<string>` | **Default: `[]`**. An array of absolute, native paths to directory dependencies that need to be watched for changes.
 `cacheable` | `boolean` | **Default: `false`**. Flag whether the code can be re-used in watch mode if none of the `dependencies` have changed.
 
@@ -184,7 +199,6 @@ The **val-loader** itself has no options. The options are passed as they are (wi
 
 
 [npm]: https://img.shields.io/npm/v/val-loader.svg
-[npm-stats]: https://img.shields.io/npm/dm/val-loader.svg
 [npm-url]: https://npmjs.com/package/val-loader
 
 [node]: https://img.shields.io/node/v/val-loader.svg
@@ -196,8 +210,8 @@ The **val-loader** itself has no options. The options are passed as they are (wi
 [travis]: http://img.shields.io/travis/webpack-contrib/val-loader.svg
 [travis-url]: https://travis-ci.org/webpack-contrib/val-loader
 
-[appveyor-url]: https://ci.appveyor.com/project/jhnns/val-loader/branch/master
 [appveyor]: https://ci.appveyor.com/api/projects/status/github/webpack-contrib/val-loader?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/jhnns/val-loader/branch/master
 
 [cover]: https://codecov.io/gh/webpack-contrib/val-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/val-loader
