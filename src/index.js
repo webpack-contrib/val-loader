@@ -20,6 +20,10 @@ function processResult(loaderContext, result) {
 
   (result.dependencies || [])
     .forEach(dep => loaderContext.addDependency(dep));
+
+  (result.contextDependencies || [])
+    .forEach(dep => loaderContext.addContextDependency(dep));
+
   // Defaults to false which is a good default here because we assume that
   // results tend to be not cacheable when this loader is necessary
   loaderContext.cacheable(Boolean(result.cacheable));
