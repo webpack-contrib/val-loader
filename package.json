@@ -8,7 +8,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">= 4.3 < 5.0.0 || >= 5.10"
+    "node": ">= 4.8 < 5.0.0 || >= 5.10"
   },
   "scripts": {
     "start": "npm run build -- -w",
