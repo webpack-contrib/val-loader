@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/webpack-contrib/val-loader/compare/v1.0.2...v1.1.0) (2017-11-19)
+
+
+### Features
+
+* add support for `contextDependencies` in the `{Object}` interface (`options.contextDependencies`) ([#23](https://github.com/webpack-contrib/val-loader/issues/23)) ([78aa6fe](https://github.com/webpack-contrib/val-loader/commit/78aa6fe))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/webpack-contrib/val-loader/compare/v1.0.1...v1.0.2) (2017-03-21)
 
