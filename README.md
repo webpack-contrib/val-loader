@@ -23,17 +23,17 @@ npm i -D val-loader
 
 <h2 align="center">Usage</h2>
 
-The module that is loaded with this loader must stick to the following interfaces.
+The module that is loaded with this loader must stick to the following interfaces
 
 ### `Module Interface`
 
-The loaded module must export a function as `default` export with the following *Function Interface*.
+The loaded module must export a function as `default` export with the following *Function Interface*
 
 ```js
 module.exports = function () {...};
 ```
 
-Modules transpiled by [Babel](https://babeljs.io/) are also supported.
+Modules transpiled by [Babel](https://babeljs.io/) are also supported
 
 ```js
 export default function () {...};
@@ -41,35 +41,36 @@ export default function () {...};
 
 ### `Function Interface`
 
-The function will be called with the loader [`options`](https://webpack.js.org/configuration/module/#useentry) and must either return:
+The function will be called with the loader [`options`](https://webpack.js.org/configuration/module/#useentry) and must either return
 
-**`{Object}`**
+#### `{Object}`
 
-Following *Object Interface*
+Following the **Object Interface**
 
-**`{Promise}`**
+#### `{Promise}`
 
-That resolves to following the *Object Interface*
+Resolving to an `{Object}` following the **Object Interface**
 
 ### `Object Interface`
 
 |Name|Type|Default|Description|
 |:---|:--:|:-----:|:----------|
-|**`code`**|`{String\|Buffer}`|`undefined`|**Required**. The code that is passed to the next loader or to webpack|
-|**`sourceMap`**| [`{Object}`](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit)|`undefined`|**Optional**. Will be passed to the next loader or to webpack|
-|**`ast`**|`{Array<{Object}>}`|**Optional**. An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST|
-|**`dependencies`**|`{Array<{String}>}`|`[]`|An array of absolute, native paths to file dependencies that need to be watched for changes.
+|**`code`**|`{String\|Buffer}`|`undefined`|(**Required**) The code that is passed to the next loader or to webpack|
+|**`sourceMap`**| [`{Object}`](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit)|`undefined`|(**Optional**) Will be passed to the next loader or to webpack|
+|**`ast`**|`{Array<{Object}>}`|`undefined`|(**Optional**) An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST|
+|**`dependencies`**|`{Array<{String}>}`|`[]`|An array of absolute, native paths to file dependencies that need to be watched for changes|
+|**`contextDependencies`**| `{Array<{String}>}` |`[]`| An array of absolute, native paths to directory dependencies that need to be watched for changes|
 |**`cacheable`**|`{Boolean}`|`false`|Flag whether the code can be re-used in watch mode if none of the `dependencies` have changed|
 
 <h2 align="center">Options</h2>
 
-The **val-loader** itself has no options. The options are passed as they are (without cloning them) to the exported function.
+**`val-loader`** itself has no options. The options are passed as they are (without cloning them) to the exported function
 
 <h2 align="center">Examples</h2>
 
-If you have a module like this:
+If you have a module like this
 
-**`answer.js`**
+**answer.js**
 ```js
 function answer () {
   return {
@@ -80,9 +81,9 @@ function answer () {
 module.exports = answer;
 ```
 
-you can use the **val-loader** to generate source code on build time:
+you can use the **val-loader** to generate source code on build time
 
-**`webpack.config.js`**
+**webpack.config.js**
 ```js
 module.exports = {
   ...
@@ -103,9 +104,9 @@ module.exports = {
 
 ### `Complete`
 
-A complete example of all available features looks like this:
+A complete example of all available features looks like this
 
-**`answer.js`**
+**answer.js**
 ```js
 const ask = require('./ask.js');
 const generate = require('./generate.js');
@@ -136,7 +137,7 @@ function answer(options) {
 module.exports = answer;
 ```
 
-**`webpack.config.js`**
+**webpack.config.js**
 ```js
 module.exports = {
   ...
@@ -157,12 +158,6 @@ module.exports = {
   }
 };
 ```
-`contextDependencies` | `Array<string>` | **Default: `[]`**. An array of absolute, native paths to directory dependencies that need to be watched for changes.
-`cacheable` | `boolean` | **Default: `false`**. Flag whether the code can be re-used in watch mode if none of the `dependencies` have changed.
-
-### Loader Options
-
-The **val-loader** itself has no options. The options are passed as they are (without cloning them) to the exported function.
 
 <h2 align="center">Maintainers</h2>
 
