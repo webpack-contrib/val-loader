@@ -1,5 +1,3 @@
-
-
 function helperLoader() {
   // Discards the content
   return '';

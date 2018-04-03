@@ -4,9 +4,7 @@ function dependencies() {
       require.resolve('./args.js'),
       require.resolve('./simple.js'),
     ],
-    contextDependencies: [
-      __dirname,
-    ],
+    contextDependencies: [__dirname],
     code: '',
   };
 }

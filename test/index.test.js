@@ -1,4 +1,5 @@
 const path = require('path');
+
 const compile = require('./helpers/compile');
 const bufferFromStr = require('./helpers/bufferFromStr');
 
@@ -7,45 +8,38 @@ function rel(p) {
 }
 
 test('should pass on the code from the simple fixture', () =>
-  compile('simple')
-    .then((result) => {
-      expect(result.inspect.arguments).toEqual([
-        'Hello from simple fixture',
-        { isASourceMap: true },
-        { isAnAst: true },
-      ]);
-    }),
-);
+  compile('simple').then((result) => {
+    expect(result.inspect.arguments).toEqual([
+      'Hello from simple fixture',
+      { isASourceMap: true },
+      { isAnAst: true },
+    ]);
+  }));
 
 test('should pass on the code from the buffer fixture', () =>
-  compile('buffer')
-    .then((result) => {
-      expect(result.inspect.arguments).toEqual([
-        bufferFromStr('Hello from buffer fixture'),
-        { isASourceMap: true },
-        { isAnAst: true },
-      ]);
-    }),
-);
+  compile('buffer').then((result) => {
+    expect(result.inspect.arguments).toEqual([
+      bufferFromStr('Hello from buffer fixture'),
+      { isASourceMap: true },
+      { isAnAst: true },
+    ]);
+  }));
 
 test('should recognize modules produced by babel', () =>
-  compile('babel')
-    .then((result) => {
-      expect(result.inspect.arguments).toEqual([
-        'Hello from babel fixture',
-        null,
-        null,
-      ]);
-    }),
-);
+  compile('babel').then((result) => {
+    expect(result.inspect.arguments).toEqual([
+      'Hello from babel fixture',
+      null,
+      null,
+    ]);
+  }));
 
 test('should call the function with the loader options', () => {
   const loaderOptions = {};
 
-  return compile('args', loaderOptions)
-    .then((result) => {
-      expect(result.inspect.arguments[2][0]).toBe(loaderOptions);
-    });
+  return compile('args', loaderOptions).then((result) => {
+    expect(result.inspect.arguments[2][0]).toBe(loaderOptions);
+  });
 });
 
 test('should flag the module as not cacheable by default', () => {
@@ -57,10 +51,9 @@ test('should flag the module as not cacheable by default', () => {
     },
   };
 
-  return compile('simple', loaderOptions, loaderContext)
-    .then(() => {
-      expect(cacheable).toBe(false);
-    });
+  return compile('simple', loaderOptions, loaderContext).then(() => {
+    expect(cacheable).toBe(false);
+  });
 });
 
 test('should flag the module as cacheable if requested', () => {
@@ -72,10 +65,9 @@ test('should flag the module as cacheable if requested', () => {
     },
   };
 
-  return compile('cacheable', loaderOptions, loaderContext)
-    .then(() => {
-      expect(cacheable).toBe(true);
-    });
+  return compile('cacheable', loaderOptions, loaderContext).then(() => {
+    expect(cacheable).toBe(true);
+  });
 });
 
 test('should flag dependencies of the module', () => {
@@ -85,16 +77,15 @@ test('should flag dependencies of the module', () => {
     addDependency: dependencies.push.bind(dependencies),
   };
 
-  return compile('dependencies', loaderOptions, loaderContext)
-    .then(() => {
-      expect(dependencies).toEqual([
-        // Webpack adds the loaded fixture to the dependencies
-        require.resolve('./fixtures/dependencies.js'),
-        // These are the dependencies that should be added by our fixture
-        require.resolve('./fixtures/args.js'),
-        require.resolve('./fixtures/simple.js'),
-      ]);
-    });
+  return compile('dependencies', loaderOptions, loaderContext).then(() => {
+    expect(dependencies).toEqual([
+      // Webpack adds the loaded fixture to the dependencies
+      require.resolve('./fixtures/dependencies.js'),
+      // These are the dependencies that should be added by our fixture
+      require.resolve('./fixtures/args.js'),
+      require.resolve('./fixtures/simple.js'),
+    ]);
+  });
 });
 
 test('should work the same if a promise is returned', () => {
@@ -106,106 +97,139 @@ test('should work the same if a promise is returned', () => {
     },
   };
 
-  return compile('promise', loaderOptions, loaderContext)
-    .then((result) => {
-      expect(result.inspect.arguments).toEqual([
-        'Hello from promise fixture',
-        { isASourceMap: true },
-        { isAnAst: true },
-      ]);
-      expect(cacheable).toBe(true);
-    });
+  return compile('promise', loaderOptions, loaderContext).then((result) => {
+    expect(result.inspect.arguments).toEqual([
+      'Hello from promise fixture',
+      { isASourceMap: true },
+      { isAnAst: true },
+    ]);
+    expect(cacheable).toBe(true);
+  });
 });
 
 test('should report require() errors with a useful stacktrace', () =>
-  compile('error-require')
-    .then(() => {
+  compile('error-require').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
       expect(err.message).toContain('This is a typical require() error');
-      expect(err.message).toContain(require.resolve('./fixtures/error-require.js'));
-    }),
-);
+      expect(err.message).toContain(
+        require.resolve('./fixtures/error-require.js')
+      );
+    }
+  ));
 
 test('should throw a useful error message if the module exports not a function', () =>
-  compile('error-export-null')
-    .then(() => {
+  compile('error-export-null').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
       const p = rel(require.resolve('./fixtures/error-export-null.js'));
 
-      expect(err.message).toContain(`Module ${p} does not export a function as default.`);
-    }),
-);
+      expect(err.message).toContain(
+        `Module ${p} does not export a function as default.`
+      );
+    }
+  ));
 
 test('should throw a useful error message if the exported function returns a wrong object (sync)', () =>
-  compile('error-return-sync-wrong-obj')
-    .then(() => {
+  compile('error-return-sync-wrong-obj').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-sync-wrong-obj.js'));
+      const p = rel(
+        require.resolve('./fixtures/error-return-sync-wrong-obj.js')
+      );
 
-      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a 'code' property.`);
-    }),
-);
+      expect(err.message).toContain(
+        `The returned result of module ${rel(
+          p
+        )} is not an object with a 'code' property.`
+      );
+    }
+  ));
 
 test('should throw a useful error message if the exported function returns a wrong object (async)', () =>
-  compile('error-return-async-wrong-obj')
-    .then(() => {
+  compile('error-return-async-wrong-obj').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-async-wrong-obj.js'));
+      const p = rel(
+        require.resolve('./fixtures/error-return-async-wrong-obj.js')
+      );
 
-      expect(err.message).toContain(`The returned result of module ${rel(p)} is not an object with a 'code' property.`);
-    }),
-);
+      expect(err.message).toContain(
+        `The returned result of module ${rel(
+          p
+        )} is not an object with a 'code' property.`
+      );
+    }
+  ));
 
 test('should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (sync)', () =>
-  compile('error-return-sync-invalid-code')
-    .then(() => {
+  compile('error-return-sync-invalid-code').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-sync-invalid-code.js'));
+      const p = rel(
+        require.resolve('./fixtures/error-return-sync-invalid-code.js')
+      );
 
-      expect(err.message).toContain(`The returned code of module ${rel(p)} is neither a string nor an instance of Buffer.`);
-    }),
-);
+      expect(err.message).toContain(
+        `The returned code of module ${rel(
+          p
+        )} is neither a string nor an instance of Buffer.`
+      );
+    }
+  ));
 
 test('should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (async)', () =>
-  compile('error-return-async-invalid-code')
-    .then(() => {
+  compile('error-return-async-invalid-code').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      const p = rel(require.resolve('./fixtures/error-return-async-invalid-code.js'));
+      const p = rel(
+        require.resolve('./fixtures/error-return-async-invalid-code.js')
+      );
 
-      expect(err.message).toContain(`The returned code of module ${rel(p)} is neither a string nor an instance of Buffer.`);
-    }),
-);
+      expect(err.message).toContain(
+        `The returned code of module ${rel(
+          p
+        )} is neither a string nor an instance of Buffer.`
+      );
+    }
+  ));
 
 test('should not swallow function call errors (sync)', () =>
-  compile('error-call-sync')
-    .then(() => {
+  compile('error-call-sync').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
       expect(err.message).toContain('Calling the function failed');
-      expect(err.message).toContain(require.resolve('./fixtures/error-call-sync.js'));
-    }),
-);
+      expect(err.message).toContain(
+        require.resolve('./fixtures/error-call-sync.js')
+      );
+    }
+  ));
 
 test('should not swallow function call errors (async)', () =>
-  compile('error-call-async')
-    .then(() => {
+  compile('error-call-async').then(
+    () => {
       throw new Error('Should not be resolved');
     },
     (err) => {
-      expect(err.message).toContain('Calling the function failed asynchronously');
-      expect(err.message).toContain(require.resolve('./fixtures/error-call-async.js'));
-    }),
-);
+      expect(err.message).toContain(
+        'Calling the function failed asynchronously'
+      );
+      expect(err.message).toContain(
+        require.resolve('./fixtures/error-call-async.js')
+      );
+    }
+  ));
