@@ -3,6 +3,7 @@ const path = require('path');
 const compile = require('./helpers/compile');
 const bufferFromStr = require('./helpers/bufferFromStr');
 
+// returns a relative path
 function rel(p) {
   return path.relative(process.cwd(), p);
 }
