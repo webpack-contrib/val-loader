@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/webpack-contrib/val-loader/compare/v1.1.0...v1.1.1) (2018-06-21)
+
+
+### Bug Fixes
+
+* add support for `webpack@4` ([#30](https://github.com/webpack-contrib/val-loader/issues/30)) ([fea518d](https://github.com/webpack-contrib/val-loader/commit/fea518d))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/webpack-contrib/val-loader/compare/v1.0.2...v1.1.0) (2017-11-19)
 
