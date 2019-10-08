@@ -162,12 +162,14 @@ In the bundle, requiring the module then returns:
 ```js
 // ... bundle code ...
 
-  const tenYearsMs = require('years-in-ms'); // 315360000000
-
-// ... bundle code ...
+const tenYearsMs = require('years-in-ms'); // 315360000000
 ```
 
+```js
+// ... bundle code ...
+
 require("val-loader!tenyearsinms") == 315360000000
+```
 
 ## License
 
