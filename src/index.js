@@ -1,4 +1,5 @@
 import path from 'path';
+import Module from 'module';
 import loaderUtils from 'loader-utils';
 
 function rel(p) {
@@ -29,7 +30,13 @@ function processResult(loaderContext, result) {
 
 function valLoader(content) {
   const options = loaderUtils.getOptions(this);
-  const exports = this.exec(content, this.resource);
+
+  const module = new Module(this.resource, this);
+  module.paths = Module._nodeModulePaths(this.context); // eslint-disable-line no-underscore-dangle
+  module.filename = this.resource;
+  module._compile(content, this.resource);  // eslint-disable-line no-underscore-dangle
+
+  const { exports } = module;
   const func = (exports && exports.default) ? exports.default : exports;
 
   if (typeof func !== 'function') {
