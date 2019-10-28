@@ -60,7 +60,7 @@ module.exports = {
 
 ```js
 // src/entry.js
-const answer = require('test-file');
+const answer = require('target-file');
 ```
 
 And run `webpack` via your preferred method.
