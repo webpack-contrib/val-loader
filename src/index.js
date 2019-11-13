@@ -1,18 +1,32 @@
-import path from 'path';
+import Module from 'module';
 
 import loaderUtils from 'loader-utils';
+import validateOptions from 'schema-utils';
 
-function rel(p) {
-  return path.relative(process.cwd(), p);
+import schema from './options.json';
+
+const parentModule = module;
+
+function exec(code, loaderContext) {
+  const { resource, context } = loaderContext;
+
+  const module = new Module(resource, parentModule);
+
+  // eslint-disable-next-line no-underscore-dangle
+  module.paths = Module._nodeModulePaths(context);
+  module.filename = resource;
+
+  // eslint-disable-next-line no-underscore-dangle
+  module._compile(code, resource);
+
+  return module.exports;
 }
 
 function processResult(loaderContext, result) {
   if (!result || typeof result !== 'object' || 'code' in result === false) {
     loaderContext.callback(
       new Error(
-        `The returned result of module ${rel(
-          loaderContext.resource
-        )} is not an object with a 'code' property.`
+        `The returned result of module "${loaderContext.resource}" is not an object with a "code" property`
       )
     );
 
@@ -25,9 +39,7 @@ function processResult(loaderContext, result) {
   ) {
     loaderContext.callback(
       new Error(
-        `The returned code of module ${rel(
-          loaderContext.resource
-        )} is neither a string nor an instance of Buffer.`
+        `The returned code of module "${loaderContext.resource}" is neither a string nor an instance of Buffer`
       )
     );
 
@@ -54,23 +66,46 @@ function processResult(loaderContext, result) {
   );
 }
 
-function valLoader(content) {
-  const options = loaderUtils.getOptions(this);
-  const exports = this.exec(content, this.resource);
+export default function loader(content) {
+  const options = loaderUtils.getOptions(this) || {};
+
+  validateOptions(schema, options, {
+    name: 'Val Loader',
+    baseDataPath: 'options',
+  });
+
+  let exports;
+
+  try {
+    exports = exec(content, this);
+  } catch (error) {
+    throw new Error(`Unable to execute "${this.resource}": ${error}`);
+  }
+
   const func = exports && exports.default ? exports.default : exports;
 
   if (typeof func !== 'function') {
     throw new Error(
-      `Module ${rel(this.resource)} does not export a function as default.`
+      `Module "${this.resource}" does not export a function as default`
     );
   }
 
-  const result = func(options);
+  let result;
+
+  try {
+    result = func(options);
+  } catch (error) {
+    throw new Error(`Module "${this.resource}" throw error: ${error}`);
+  }
 
   if (result && typeof result.then === 'function') {
     const callback = this.async();
 
-    result.then((res) => processResult(this, res), callback);
+    result
+      .then((res) => processResult(this, res))
+      .catch((error) => {
+        callback(new Error(`Module "${this.resource}" throw error: ${error}`));
+      });
 
     return;
   }
@@ -78,5 +113,3 @@ function valLoader(content) {
   // No return necessary because processResult calls this.callback()
   processResult(this, result);
 }
-
-export default valLoader;

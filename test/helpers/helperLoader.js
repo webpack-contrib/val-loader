@@ -1,11 +1,31 @@
-function helperLoader() {
-  // Discards the content
-  return '';
+import path from 'path';
+
+function rel(p) {
+  return path.relative(process.cwd(), p);
 }
 
-helperLoader.pitch = function pitch() {
-  // Extend loader context with mocks
-  Object.assign(this, this.query);
-};
+export default function helperLoader(content, map, meta) {
+  const dependencies = this.getDependencies().map((dependency) =>
+    rel(dependency).replace(/\\/g, '/')
+  );
+  const contextDependencies = this.getContextDependencies().map((dependency) =>
+    rel(dependency).replace(/\\/g, '/')
+  );
+  const json = JSON.stringify(
+    {
+      content,
+      map,
+      meta,
+      dependencies,
+      contextDependencies,
+    },
+    null,
+    '  '
+  )
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
 
-module.exports = helperLoader;
+  this.emitFile('val-loader.js', json, false);
+
+  return ``;
+}

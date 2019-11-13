@@ -8,7 +8,9 @@
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
+[![size][size]][size-url]
 
 # val-loader
 
@@ -18,10 +20,6 @@ the loader changes a module from code to a result.
 
 Another way to view `val-loader`, is that it allows a user a way to make their
 own custom loader logic, without having to write a custom loader.
-
-## Requirements
-
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
 
 ## Getting Started
 
@@ -33,14 +31,16 @@ $ npm install val-loader --save-dev
 
 Then add the loader to your `webpack` config. For example:
 
+**target-file.js**
+
 ```js
-// target-file.js
 module.exports = () => {
-  return { code: 'module.exports = 42;' }
+  return { code: 'module.exports = 42;' };
 };
 ```
 
 **webpack.config.js**
+
 ```js
 module.exports = {
   module: {
@@ -49,17 +49,18 @@ module.exports = {
         test: /target-file.js$/,
         use: [
           {
-            loader: `val-loader`
-          }
-        ]
-      }
-    ]
-  }
-}
+            loader: `val-loader`,
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
+**src/entry.js**
+
 ```js
-// src/entry.js
 const answer = require('target-file');
 ```
 
@@ -126,19 +127,20 @@ In this example the loader is configured to operator on a file name of
 result of the execution. This example passes `years` as an `option`, which
 corresponds to the `years` parameter in the target module exported function:
 
+**years-in-ms.js**
+
 ```js
-// years-in-ms.js
 module.exports = function yearsInMs({ years }) {
   const value = years * 365 * 24 * 60 * 60 * 1000;
   // NOTE: this return value will replace the module in the bundle
   return { code: 'module.exports = ' + value };
-}
+};
 ```
 
+**webpack.config.js**
+
 ```js
-// webpack.config.js
 module.exports = {
-  ...
   module: {
     rules: [
       {
@@ -147,13 +149,13 @@ module.exports = {
           {
             loader: 'val-loader',
             options: {
-              years: 10
-            }
-          }
-        ]
-      }
-    ]
-  }
+              years: 10,
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 
@@ -168,27 +170,30 @@ const tenYearsMs = require('years-in-ms'); // 315360000000
 ```js
 // ... bundle code ...
 
-require("val-loader!tenyearsinms") == 315360000000
+require('val-loader!tenyearsinms') == 315360000000;
 ```
+
+## Contributing
+
+Please take a moment to read our contributing guidelines if you haven't yet done so.
+
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 ## License
 
-#### [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/val-loader.svg
 [npm-url]: https://npmjs.com/package/val-loader
-
 [node]: https://img.shields.io/node/v/val-loader.svg
 [node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/val-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/val-loader
-
-[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/val-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/val-loader
-
+[tests]: https://dev.azure.com/webpack-contrib/val-loader/_apis/build/status/webpack-contrib.val-loader?branchName=master
+[tests-url]: https://dev.azure.com/webpack-contrib/val-loader/_build/latest?definitionId=2&branchName=master
 [cover]: https://codecov.io/gh/webpack-contrib/val-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/val-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
+[size]: https://packagephobia.now.sh/badge?p=val-loader
+[size-url]: https://packagephobia.now.sh/result?p=val-loader

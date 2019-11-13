@@ -5,7 +5,7 @@ function dependencies() {
       require.resolve('./simple.js'),
     ],
     contextDependencies: [__dirname],
-    code: '',
+    code: 'module.exports = "hello world";',
   };
 }
 

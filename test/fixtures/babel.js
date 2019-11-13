@@ -1,6 +1,6 @@
 function babel() {
   return {
-    code: 'Hello from babel fixture',
+    code: 'module.exports = "hello world";',
   };
 }
 

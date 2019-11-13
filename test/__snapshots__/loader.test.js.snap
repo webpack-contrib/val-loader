@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loader should call the function with the loader options: errors 1`] = `Array []`;
+
+exports[`loader should call the function with the loader options: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": [
+    {
+      \\"arg\\": 123,
+      \\"arg2\\": \\"string\\",
+      \\"arg3\\": true,
+      \\"arg4\\": null,
+      \\"arg6\\": {}
+    }
+  ],
+  \\"dependencies\\": [
+    \\"test/fixtures/args.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should call the function with the loader options: warnings 1`] = `Array []`;
+
+exports[`loader should flag the module as cacheable if requested: errors 1`] = `Array []`;
+
+exports[`loader should flag the module as cacheable if requested: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": null,
+  \\"dependencies\\": [
+    \\"test/fixtures/cacheable.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should flag the module as cacheable if requested: warnings 1`] = `Array []`;
+
+exports[`loader should flag the module as not cacheable by default: errors 1`] = `Array []`;
+
+exports[`loader should flag the module as not cacheable by default: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should flag the module as not cacheable by default: warnings 1`] = `Array []`;
+
+exports[`loader should handle dependencies and contextDependencies of the module: errors 1`] = `Array []`;
+
+exports[`loader should handle dependencies and contextDependencies of the module: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": null,
+  \\"dependencies\\": [
+    \\"test/fixtures/dependencies.js\\",
+    \\"test/fixtures/args.js\\",
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": [
+    \\"test/fixtures\\"
+  ]
+}"
+`;
+
+exports[`loader should handle dependencies and contextDependencies of the module: warnings 1`] = `Array []`;
+
+exports[`loader should not swallow function call errors (async): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: Module \\"/test/fixtures/error-call-async.js\\" throw error: Error: Calling the function failed asynchronously",
+]
+`;
+
+exports[`loader should not swallow function call errors (async): warnings 1`] = `Array []`;
+
+exports[`loader should not swallow function call errors (sync): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: Module \\"/test/fixtures/error-call-sync.js\\" throw error: Error: Calling the function failed",
+]
+`;
+
+exports[`loader should not swallow function call errors (sync): warnings 1`] = `Array []`;
+
+exports[`loader should pass on the code from the buffer fixture: errors 1`] = `Array []`;
+
+exports[`loader should pass on the code from the buffer fixture: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/buffer.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should pass on the code from the buffer fixture: warnings 1`] = `Array []`;
+
+exports[`loader should pass on the code from the simple fixture without options: errors 1`] = `Array []`;
+
+exports[`loader should pass on the code from the simple fixture without options: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should pass on the code from the simple fixture without options: warnings 1`] = `Array []`;
+
+exports[`loader should pass on the code from the simple fixture: errors 1`] = `Array []`;
+
+exports[`loader should pass on the code from the simple fixture: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should pass on the code from the simple fixture: warnings 1`] = `Array []`;
+
+exports[`loader should recognize modules produced by babel: errors 1`] = `Array []`;
+
+exports[`loader should recognize modules produced by babel: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": null,
+  \\"dependencies\\": [
+    \\"test/fixtures/babel.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should recognize modules produced by babel: warnings 1`] = `Array []`;
+
+exports[`loader should report require() errors with a useful stacktrace: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: Unable to execute \\"/test/fixtures/error-require.js\\": Error: This is a typical require() error",
+]
+`;
+
+exports[`loader should report require() errors with a useful stacktrace: warnings 1`] = `Array []`;
+
+exports[`loader should throw a useful error message if the exported function returns a wrong object (async): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: The returned result of module \\"/test/fixtures/error-return-async-wrong-obj.js\\" is not an object with a \\"code\\" property",
+]
+`;
+
+exports[`loader should throw a useful error message if the exported function returns a wrong object (async): warnings 1`] = `Array []`;
+
+exports[`loader should throw a useful error message if the exported function returns a wrong object (sync): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: The returned result of module \\"/test/fixtures/error-return-sync-wrong-obj.js\\" is not an object with a \\"code\\" property",
+]
+`;
+
+exports[`loader should throw a useful error message if the exported function returns a wrong object (sync): warnings 1`] = `Array []`;
+
+exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (async): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: The returned code of module \\"/test/fixtures/error-return-async-invalid-code.js\\" is neither a string nor an instance of Buffer",
+]
+`;
+
+exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (async): warnings 1`] = `Array []`;
+
+exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (sync): errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: The returned code of module \\"/test/fixtures/error-return-sync-invalid-code.js\\" is neither a string nor an instance of Buffer",
+]
+`;
+
+exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (sync): warnings 1`] = `Array []`;
+
+exports[`loader should throw a useful error message if the module exports not a function: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+Error: Module \\"/test/fixtures/error-export-null.js\\" does not export a function as default",
+]
+`;
+
+exports[`loader should throw a useful error message if the module exports not a function: warnings 1`] = `Array []`;
+
+exports[`loader should work the same if a promise is returned: errors 1`] = `Array []`;
+
+exports[`loader should work the same if a promise is returned: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/promise.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should work the same if a promise is returned: warnings 1`] = `Array []`;
