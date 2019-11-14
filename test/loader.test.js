@@ -132,6 +132,45 @@ describe('loader', () => {
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
   });
 
+  it('should work the same if a promise is returned #2', async () => {
+    const compiler = getCompiler('promise-compex.js');
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
+  it('should work with async function', async () => {
+    const compiler = getCompiler('async-function.js');
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
+  it('should has module.parent', async () => {
+    const compiler = getCompiler('module-parent.js');
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
   it('should report require() errors with a useful stacktrace', async () => {
     const compiler = getCompiler('error-require.js');
     const stats = await compile(compiler);

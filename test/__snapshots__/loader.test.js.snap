@@ -80,6 +80,27 @@ exports[`loader should handle dependencies and contextDependencies of the module
 
 exports[`loader should handle dependencies and contextDependencies of the module: warnings 1`] = `Array []`;
 
+exports[`loader should has module.parent: errors 1`] = `Array []`;
+
+exports[`loader should has module.parent: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true,
+    \\"hasParent\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/module-parent.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should has module.parent: warnings 1`] = `Array []`;
+
 exports[`loader should not swallow function call errors (async): errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from /src/index.js):
@@ -228,6 +249,26 @@ Error: Module \\"/test/fixtures/error-export-null.js\\" does not export a functi
 
 exports[`loader should throw a useful error message if the module exports not a function: warnings 1`] = `Array []`;
 
+exports[`loader should work the same if a promise is returned #2: errors 1`] = `Array []`;
+
+exports[`loader should work the same if a promise is returned #2: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/promise-compex.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should work the same if a promise is returned #2: warnings 1`] = `Array []`;
+
 exports[`loader should work the same if a promise is returned: errors 1`] = `Array []`;
 
 exports[`loader should work the same if a promise is returned: result 1`] = `
@@ -247,3 +288,23 @@ exports[`loader should work the same if a promise is returned: result 1`] = `
 `;
 
 exports[`loader should work the same if a promise is returned: warnings 1`] = `Array []`;
+
+exports[`loader should work with async function: errors 1`] = `Array []`;
+
+exports[`loader should work with async function: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": {
+    \\"isASourceMap\\": true
+  },
+  \\"meta\\": {
+    \\"isAnAst\\": true
+  },
+  \\"dependencies\\": [
+    \\"test/fixtures/async-function.js\\"
+  ],
+  \\"contextDependencies\\": []
+}"
+`;
+
+exports[`loader should work with async function: warnings 1`] = `Array []`;
