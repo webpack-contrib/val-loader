@@ -1,7 +1,7 @@
 function promise() {
   return Promise.resolve({
     cacheable: true,
-    code: 'Hello from promise fixture',
+    code: 'module.exports = "hello world";',
     sourceMap: { isASourceMap: true },
     ast: { isAnAst: true },
   });

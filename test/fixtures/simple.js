@@ -1,6 +1,6 @@
 function simple() {
   return {
-    code: 'Hello from simple fixture',
+    code: 'module.exports = "hello world";',
     sourceMap: { isASourceMap: true },
     ast: { isAnAst: true },
   };

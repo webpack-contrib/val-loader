@@ -1,8 +1,6 @@
-const bufferFromStr = require('../helpers/bufferFromStr');
-
 function buffer() {
   return {
-    code: bufferFromStr('Hello from buffer fixture'),
+    code: Buffer.from('module.exports = "hello world";'),
     sourceMap: { isASourceMap: true },
     ast: { isAnAst: true },
   };
