@@ -8,7 +8,7 @@ variables:
 jobs:
   - job: Lint
     pool:
-      vmImage: ubuntu-16.04
+      vmImage: ubuntu-latest
     steps:
       - task: NodeTool@0
         inputs:
@@ -39,7 +39,7 @@ jobs:
 
   - job: Linux
     pool:
-      vmImage: ubuntu-16.04
+      vmImage: ubuntu-latest
     strategy:
       maxParallel: 4
       matrix:
@@ -92,7 +92,7 @@ jobs:
 
   - job: macOS
     pool:
-      vmImage: macOS-10.14
+      vmImage: macOS-latest
     strategy:
       maxParallel: 4
       matrix:
@@ -145,7 +145,7 @@ jobs:
 
   - job: Windows
     pool:
-      vmImage: windows-2019
+      vmImage: windows-latest
     strategy:
       maxParallel: 4
       matrix:
