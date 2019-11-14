@@ -1,7 +1,7 @@
 import path from 'path';
 
 import webpack from 'webpack';
-import MemoryFS from 'memory-fs';
+import memfs from 'memfs';
 
 export default (fixture, loaderOptions = {}, config = {}) => {
   const fullConfig = {
@@ -36,7 +36,13 @@ export default (fixture, loaderOptions = {}, config = {}) => {
   const compiler = webpack(fullConfig);
 
   if (!config.outputFileSystem) {
-    compiler.outputFileSystem = new MemoryFS();
+    const outputFileSystem = memfs;
+
+    outputFileSystem.vol.reset();
+    // Todo remove when we drop webpack@4 support
+    outputFileSystem.join = path.join.bind(path);
+
+    compiler.outputFileSystem = outputFileSystem;
   }
 
   return compiler;
