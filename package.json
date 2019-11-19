@@ -3,10 +3,10 @@
   "version": "2.0.0",
   "description": "val loader module for webpack",
   "license": "MIT",
-  "repository": "webpack-contrib/val-loader-loader",
+  "repository": "webpack-contrib/val-loader",
   "author": "Tobias Koppers @sokra",
-  "homepage": "https://github.com/webpack-contrib/val-loader-loader",
-  "bugs": "https://github.com/webpack-contrib/val-loader-loader/issues",
+  "homepage": "https://github.com/webpack-contrib/val-loader",
+  "bugs": "https://github.com/webpack-contrib/val-loader/issues",
   "main": "dist/cjs.js",
   "engines": {
     "node": ">= 10.13.0"
