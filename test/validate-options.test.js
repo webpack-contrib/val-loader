@@ -1,6 +1,6 @@
 import { getCompiler, compile } from './helpers';
 
-describe('validation', () => {
+describe('validate options', () => {
   const tests = {
     unknown: {
       success: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],

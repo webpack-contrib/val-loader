@@ -1,7 +1,7 @@
 import path from 'path';
 
 import webpack from 'webpack';
-import memfs from 'memfs';
+import { createFsFromVolume, Volume } from 'memfs';
 
 export default (fixture, loaderOptions = {}, config = {}) => {
   const fullConfig = {
@@ -36,9 +36,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
   const compiler = webpack(fullConfig);
 
   if (!config.outputFileSystem) {
-    const outputFileSystem = memfs;
-
-    outputFileSystem.vol.reset();
+    const outputFileSystem = createFsFromVolume(new Volume());
     // Todo remove when we drop webpack@4 support
     outputFileSystem.join = path.join.bind(path);
 
