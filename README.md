@@ -21,6 +21,11 @@ the loader changes a module from code to a result.
 Another way to view `val-loader`, is that it allows a user a way to make their
 own custom loader logic, without having to write a custom loader.
 
+The target module is called with two arguments: `(options, loaderContext)`
+
+- `options`: The loader options (for instance provided in the webpack config. See the [example](#examples) below).
+- `loaderContext`: [The loader context](https://webpack.js.org/api/loaders/#the-loader-context).
+
 ## Getting Started
 
 To begin, you'll need to install `val-loader`:
@@ -34,7 +39,7 @@ Then add the loader to your `webpack` config. For example:
 **target-file.js**
 
 ```js
-module.exports = () => {
+module.exports = (options, loaderContext) => {
   return { code: 'module.exports = 42;' };
 };
 ```
@@ -104,6 +109,8 @@ Default: `[]`
 An array of absolute, native paths to file dependencies that should be watched
 by webpack for changes.
 
+Dependencies can also be added using [`loaderContext.addDependency(file: string)`](https://webpack.js.org/api/loaders/#thisadddependency).
+
 ### `contextDependencies`
 
 Type: `Array[String]`
@@ -111,6 +118,8 @@ Default: `[]`
 
 An array of absolute, native paths to directory dependencies that should be
 watched by webpack for changes.
+
+Context dependencies can also be added using [`loaderContext.addContextDependency(directory: string)`](https://webpack.js.org/api/loaders/#thisaddcontextdependency).
 
 ### `cacheable`
 
