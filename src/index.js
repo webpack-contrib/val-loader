@@ -93,7 +93,7 @@ export default function loader(content) {
   let result;
 
   try {
-    result = func(options);
+    result = func(options, this);
   } catch (error) {
     throw new Error(`Module "${this.resource}" throw error: ${error}`);
   }
