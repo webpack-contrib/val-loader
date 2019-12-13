@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`loader should allow adding dependencies and contextDependencies via loader context: errors 1`] = `Array []`;
+
+exports[`loader should allow adding dependencies and contextDependencies via loader context: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": null,
+  \\"dependencies\\": [
+    \\"test/fixtures/dependencies-via-context.js\\",
+    \\"test/fixtures/args.js\\",
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": [
+    \\"test/fixtures\\"
+  ]
+}"
+`;
+
+exports[`loader should allow adding dependencies and contextDependencies via loader context: warnings 1`] = `Array []`;
+
 exports[`loader should call the function with the loader options: errors 1`] = `Array []`;
 
 exports[`loader should call the function with the loader options: result 1`] = `
@@ -100,6 +120,31 @@ exports[`loader should has module.parent: result 1`] = `
 `;
 
 exports[`loader should has module.parent: warnings 1`] = `Array []`;
+
+exports[`loader should keep dependencies if errors are emitted: errors 1`] = `
+Array [
+  "ModuleError: Module Error (from /src/index.js):
+(Emitted value instead of an instance of Error) Error: Calling the function failed",
+]
+`;
+
+exports[`loader should keep dependencies if errors are emitted: result 1`] = `
+"{
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
+  \\"map\\": null,
+  \\"meta\\": null,
+  \\"dependencies\\": [
+    \\"test/fixtures/error-emitted-with-dependencies.js\\",
+    \\"test/fixtures/args.js\\",
+    \\"test/fixtures/simple.js\\"
+  ],
+  \\"contextDependencies\\": [
+    \\"test/fixtures\\"
+  ]
+}"
+`;
+
+exports[`loader should keep dependencies if errors are emitted: warnings 1`] = `Array []`;
 
 exports[`loader should not swallow function call errors (async): errors 1`] = `
 Array [

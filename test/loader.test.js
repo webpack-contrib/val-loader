@@ -119,6 +119,19 @@ describe('loader', () => {
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
   });
 
+  it('should allow adding dependencies and contextDependencies via loader context', async () => {
+    const compiler = getCompiler('dependencies-via-context.js');
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
   it('should work the same if a promise is returned', async () => {
     const compiler = getCompiler('promise.js');
     const stats = await compile(compiler);
@@ -160,6 +173,19 @@ describe('loader', () => {
 
   it('should has module.parent', async () => {
     const compiler = getCompiler('module-parent.js');
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
+  it('should keep dependencies if errors are emitted', async () => {
+    const compiler = getCompiler('error-emitted-with-dependencies.js');
     const stats = await compile(compiler);
 
     expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
