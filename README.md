@@ -74,7 +74,7 @@ And run `webpack` via your preferred method.
 ## Return Object Properties
 
 Targeted modules of this loader must export a `Function` that returns an object,
-or a `Promise` resolving an object, containing a `code` property at a minimum, but can
+or a `Promise` resolving an object (e.g. async function), containing a `code` property at a minimum, but can
 contain any number of additional properties.
 
 ### `code`
