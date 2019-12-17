@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/webpack-contrib/val-loader/compare/v2.0.2...v2.1.0) (2019-12-17)
+
+
+### Features
+
+* pass `loaderContext` as 2nd parameter ([#47](https://github.com/webpack-contrib/val-loader/issues/47)) ([cd5dd47](https://github.com/webpack-contrib/val-loader/commit/cd5dd471f41dc5dbb541e09ea8af0f3ed0ad23de))
+
 ### [2.0.2](https://github.com/webpack-contrib/val-loader/compare/v2.0.1...v2.0.2) (2019-11-25)
 
 
