@@ -131,6 +131,8 @@ If `true`, specifies that the code can be re-used in watch mode if none of the
 
 ## Examples
 
+### Simple
+
 In this example the loader is configured to operator on a file name of
 `years-in-ms.js`, execute the code, and store the result in the bundle as the
 result of the execution. This example passes `years` as an `option`, which
@@ -180,6 +182,84 @@ const tenYearsMs = require('years-in-ms'); // 315360000000
 // ... bundle code ...
 
 require('val-loader!tenyearsinms') == 315360000000;
+```
+
+### Figlet
+
+Example shows how to connect `figlet`
+
+**figlet.js**
+
+```js
+const figlet = require('figlet');
+
+function wrapOutput(output, config) {
+  let figletOutput = '';
+
+  if (config.textBefore) {
+    figletOutput += encodeURI(`${config.textBefore}\n`);
+  }
+
+  output.split('\n').forEach((line) => {
+    figletOutput += encodeURI(`${line}\n`);
+  });
+
+  if (config.textAfter) {
+    figletOutput += encodeURI(`${config.textAfter}\n`);
+  }
+
+  return `module.exports = decodeURI("${figletOutput}");`;
+}
+
+module.exports = function(options) {
+  const defaultConfig = {
+    fontOptions: {
+      font: 'ANSI Shadow',
+      horizontalLayout: 'default',
+      kerning: 'default',
+      verticalLayout: 'default',
+    },
+    text: 'FIGLET-LOADER',
+    textAfter: null,
+    textBefore: null,
+  };
+
+  const config = Object.assign({}, defaultConfig, options);
+
+  return new Promise(function(resolve, reject) {
+    figlet.text(config.text, config.fontOptions, (error, output) => {
+      if (error) {
+        return reject(error);
+      }
+
+      resolve({
+        code: 'module.exports = ' + wrapOutput(output, config),
+      });
+    });
+  });
+};
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('src/figlet.js'),
+        use: [
+          {
+            loader: 'val-loader',
+            options: {
+              text: 'FIGLET',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
 ## Contributing
