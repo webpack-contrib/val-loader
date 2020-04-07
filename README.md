@@ -186,7 +186,7 @@ require('val-loader!tenyearsinms') == 315360000000;
 
 ### Figlet
 
-Example shows how to connect `figlet`
+Example shows how to build [`figlet`](https://www.npmjs.com/package/figlet)
 
 **figlet.js**
 
