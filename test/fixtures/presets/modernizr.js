@@ -1,23 +1,13 @@
 const modernizr = require("modernizr");
 
-function wrapOutput(output) {
-  return "(function(window){\n" +
-    "var hadGlobal = 'Modernizr' in window;\n" +
-    "var oldGlobal = window.Modernizr;\n" +
-    output + "\n" +
-    "module.exports = window.Modernizr;\n" +
-    "if (hadGlobal) { window.Modernizr = oldGlobal; }\n" +
-    "else { delete window.Modernizr; }\n" +
-    "})(window);";
-}
-
-module.exports = function (options) {
+module.exports = function(options) {
   return new Promise(function(resolve) {
     // It is impossible to throw an error because modernizr causes the process.exit(1)
-    modernizr.build(options, function (output) {
+    modernizr.build(options, function(output) {
       resolve({
-        code: 'module.exports = ' + wrapOutput(output)
+        cacheable: true,
+        code: `var modernizr; var hadGlobal = 'Modernizr' in window; var oldGlobal = window.Modernizr; ${output} modernizr = window.Modernizr; if (hadGlobal) { window.Modernizr = oldGlobal; } else { delete window.Modernizr; } export default modernizr;`
       });
     });
   });
-}
+};
