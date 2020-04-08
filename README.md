@@ -188,7 +188,7 @@ require('val-loader!tenyearsinms') == 315360000000;
 
 Example shows how to build [`figlet`](https://www.npmjs.com/package/figlet)
 
-**figlet.js**
+**src/figlet.js**
 
 ```js
 const figlet = require('figlet');
@@ -243,11 +243,12 @@ module.exports = function(options) {
 **webpack.config.js**
 
 ```js
+const path = require('path');
 module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('src/figlet.js'),
+        test: path.resolve(__dirname, 'src', 'figlet.js'),
         use: [
           {
             loader: 'val-loader',
