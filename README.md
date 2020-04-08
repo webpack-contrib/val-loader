@@ -262,6 +262,13 @@ module.exports = {
 };
 ```
 
+**src/entry.js**
+
+```js
+import { default as figlet } from './figlet.js';
+console.log(figlet);
+```
+
 ## Contributing
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
