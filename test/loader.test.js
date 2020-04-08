@@ -276,4 +276,37 @@ describe('loader', () => {
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
   });
+
+  it('should pass on the code from the presets/figlet fixture', async () => {
+    const compiler = getCompiler('presets/figlet.js', {
+      text: 'FIGLET',
+    });
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
+
+  it('should broken on the code from the presets/figlet fixture', async () => {
+    const compiler = getCompiler('presets/figlet.js', {
+      fontOptions: {
+        font: 'NonexistsFont',
+      },
+      text: 'ANOTHER-TEXT-INVALID',
+    });
+    const stats = await compile(compiler);
+
+    expect(readAsset('val-loader.js', compiler, stats)).toMatchSnapshot(
+      'result'
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+      'warnings'
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot('errors');
+  });
 });
