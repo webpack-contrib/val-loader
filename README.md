@@ -343,8 +343,8 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [node-url]: https://nodejs.org
 [deps]: https://david-dm.org/webpack-contrib/val-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/val-loader
-[tests]: https://dev.azure.com/webpack-contrib/val-loader/_apis/build/status/webpack-contrib.val-loader?branchName=master
-[tests-url]: https://dev.azure.com/webpack-contrib/val-loader/_build/latest?definitionId=2&branchName=master
+[tests]: https://github.com/webpack-contrib/val-loader/workflows/val-loader/badge.svg
+[tests-url]: https://github.com/webpack-contrib/val-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/val-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/val-loader
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
