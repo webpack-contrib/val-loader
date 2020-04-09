@@ -143,8 +143,12 @@ corresponds to the `years` parameter in the target module exported function:
 ```js
 module.exports = function yearsInMs({ years }) {
   const value = years * 365 * 24 * 60 * 60 * 1000;
+
   // NOTE: this return value will replace the module in the bundle
-  return { code: 'module.exports = ' + value };
+  return {
+    cacheable: true,
+    code: 'module.exports = ' + value,
+  };
 };
 ```
 
@@ -173,116 +177,30 @@ module.exports = {
 In the bundle, requiring the module then returns:
 
 ```js
-// ... bundle code ...
+import tenYearsMs from 'years-in-ms';
 
-const tenYearsMs = require('years-in-ms'); // 315360000000
-```
-
-```js
-// ... bundle code ...
-
-require('val-loader!tenyearsinms') == 315360000000;
-```
-
-### Figlet
-
-Example shows how to build [`figlet`](https://www.npmjs.com/package/figlet)
-
-**src/figlet.js**
-
-```js
-const figlet = require('figlet');
-
-function wrapOutput(output, config) {
-  let figletOutput = '';
-
-  if (config.textBefore) {
-    figletOutput += encodeURI(`${config.textBefore}\n`);
-  }
-
-  output.split('\n').forEach((line) => {
-    figletOutput += encodeURI(`${line}\n`);
-  });
-
-  if (config.textAfter) {
-    figletOutput += encodeURI(`${config.textAfter}\n`);
-  }
-
-  return `module.exports = decodeURI("${figletOutput}");`;
-}
-
-module.exports = function(options) {
-  const defaultConfig = {
-    fontOptions: {
-      font: 'ANSI Shadow',
-      horizontalLayout: 'default',
-      kerning: 'default',
-      verticalLayout: 'default',
-    },
-    text: 'FIGLET-LOADER',
-    textAfter: null,
-    textBefore: null,
-  };
-
-  const config = Object.assign({}, defaultConfig, options);
-
-  return new Promise(function(resolve, reject) {
-    figlet.text(config.text, config.fontOptions, (error, output) => {
-      if (error) {
-        return reject(error);
-      }
-
-      resolve({
-        code: 'module.exports = ' + wrapOutput(output, config),
-      });
-    });
-  });
-};
-```
-
-**webpack.config.js**
-
-```js
-const path = require('path');
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: path.resolve(__dirname, 'src', 'figlet.js'),
-        use: [
-          {
-            loader: 'val-loader',
-            options: {
-              text: 'FIGLET',
-            },
-          },
-        ],
-      },
-    ],
-  },
-};
-```
-
-**src/entry.js**
-
-```js
-import { default as figlet } from './figlet.js';
-console.log(figlet);
+console.log(tenYearsMs); // 315360000000
 ```
 
 ### Modernizr
 
-Example shows how to build [`modernizr`](https://www.npmjs.com/package/modernizr)
+Example shows how to build [`modernizr`](https://www.npmjs.com/package/modernizr).
 
-**src/modernizr.js**
+**entry.js**
+
+```js
+import modenizr from './modernizr.js';
+```
+
+**modernizr.js**
 
 ```js
 const modernizr = require('modernizr');
 
-module.exports = function(options) {
-  return new Promise(function(resolve) {
+module.exports = function (options) {
+  return new Promise(function (resolve) {
     // It is impossible to throw an error because modernizr causes the process.exit(1)
-    modernizr.build(options, function(output) {
+    modernizr.build(options, function (output) {
       resolve({
         cacheable: true,
         code: `var modernizr; var hadGlobal = 'Modernizr' in window; var oldGlobal = window.Modernizr; ${output} modernizr = window.Modernizr; if (hadGlobal) { window.Modernizr = oldGlobal; } else { delete window.Modernizr; } export default modernizr;`,
@@ -321,10 +239,92 @@ module.exports = {
 };
 ```
 
-**src/entry.js**
+### Figlet
+
+Example shows how to build [`figlet`](https://www.npmjs.com/package/figlet).
+
+**entry.js**
 
 ```js
-import modenizr from './modernizr.js';
+import { default as figlet } from './figlet.js';
+
+console.log(figlet);
+```
+
+**figlet.js**
+
+```js
+const figlet = require('figlet');
+
+function wrapOutput(output, config) {
+  let figletOutput = '';
+
+  if (config.textBefore) {
+    figletOutput += encodeURI(`${config.textBefore}\n`);
+  }
+
+  output.split('\n').forEach((line) => {
+    figletOutput += encodeURI(`${line}\n`);
+  });
+
+  if (config.textAfter) {
+    figletOutput += encodeURI(`${config.textAfter}\n`);
+  }
+
+  return `module.exports = decodeURI("${figletOutput}");`;
+}
+
+module.exports = function (options) {
+  const defaultConfig = {
+    fontOptions: {
+      font: 'ANSI Shadow',
+      horizontalLayout: 'default',
+      kerning: 'default',
+      verticalLayout: 'default',
+    },
+    text: 'FIGLET-LOADER',
+    textAfter: null,
+    textBefore: null,
+  };
+
+  const config = Object.assign({}, defaultConfig, options);
+
+  return new Promise(function (resolve, reject) {
+    figlet.text(config.text, config.fontOptions, (error, output) => {
+      if (error) {
+        return reject(error);
+      }
+
+      resolve({
+        cacheable: true,
+        code: 'module.exports = ' + wrapOutput(output, config),
+      });
+    });
+  });
+};
+```
+
+**webpack.config.js**
+
+```js
+const path = require('path');
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: path.resolve(__dirname, 'src', 'figlet.js'),
+        use: [
+          {
+            loader: 'val-loader',
+            options: {
+              text: 'FIGLET',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
 ## Contributing

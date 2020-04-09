@@ -20,17 +20,6 @@ exports[`loader should allow adding dependencies and contextDependencies via loa
 
 exports[`loader should allow adding dependencies and contextDependencies via loader context: warnings 1`] = `Array []`;
 
-exports[`loader should broken on the code from the presets/figlet fixture: errors 1`] = `
-Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
-Error: Module \\"/test/fixtures/presets/figlet.js\\" throw error: Error: ENOENT: no such file or directory, open '/node_modules/figlet/fonts/NonexistsFont.flf'",
-]
-`;
-
-exports[`loader should broken on the code from the presets/figlet fixture: result 1`] = `"Error: ENOENT: no such file or directory, open '/media/veracrypt1/OS/val-loader/test/outputs/val-loader.js'"`;
-
-exports[`loader should broken on the code from the presets/figlet fixture: warnings 1`] = `Array []`;
-
 exports[`loader should call the function with the loader options: errors 1`] = `Array []`;
 
 exports[`loader should call the function with the loader options: result 1`] = `
