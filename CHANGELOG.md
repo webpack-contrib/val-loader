@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/webpack-contrib/val-loader/compare/v2.1.0...v2.1.1) (2020-04-09)
+
+### Chore
+
+* update deps
+
 ## [2.1.0](https://github.com/webpack-contrib/val-loader/compare/v2.0.2...v2.1.0) (2019-12-17)
 
 
