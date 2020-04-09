@@ -270,6 +270,63 @@ import { default as figlet } from './figlet.js';
 console.log(figlet);
 ```
 
+### Modernizr
+
+Example shows how to build [`modernizr`](https://www.npmjs.com/package/modernizr)
+
+**src/modernizr.js**
+
+```js
+const modernizr = require('modernizr');
+
+module.exports = function(options) {
+  return new Promise(function(resolve) {
+    // It is impossible to throw an error because modernizr causes the process.exit(1)
+    modernizr.build(options, function(output) {
+      resolve({
+        cacheable: true,
+        code: `var modernizr; var hadGlobal = 'Modernizr' in window; var oldGlobal = window.Modernizr; ${output} modernizr = window.Modernizr; if (hadGlobal) { window.Modernizr = oldGlobal; } else { delete window.Modernizr; } export default modernizr;`,
+      });
+    });
+  });
+};
+```
+
+**webpack.config.js**
+
+```js
+const path = require('path');
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: path.resolve(__dirname, 'src', 'modernizr.js'),
+        use: [
+          {
+            loader: 'val-loader',
+            options: {
+              minify: false,
+              options: ['setClasses'],
+              'feature-detects': [
+                'test/css/flexbox',
+                'test/es6/promises',
+                'test/serviceworker',
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+**src/entry.js**
+
+```js
+import modenizr from './modernizr.js';
+```
+
 ## Contributing
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
