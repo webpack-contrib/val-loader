@@ -20,17 +20,6 @@ exports[`loader should allow adding dependencies and contextDependencies via loa
 
 exports[`loader should allow adding dependencies and contextDependencies via loader context: warnings 1`] = `Array []`;
 
-exports[`loader should broken on the code from the presets/figlet fixture: errors 1`] = `
-Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
-Error: Module \\"/test/fixtures/presets/figlet.js\\" throw error: Error: ENOENT: no such file or directory, open '/node_modules/figlet/fonts/NonexistsFont.flf'",
-]
-`;
-
-exports[`loader should broken on the code from the presets/figlet fixture: result 1`] = `"Error: ENOENT: no such file or directory, open '/media/veracrypt1/OS/val-loader/test/outputs/val-loader.js'"`;
-
-exports[`loader should broken on the code from the presets/figlet fixture: warnings 1`] = `Array []`;
-
 exports[`loader should call the function with the loader options: errors 1`] = `Array []`;
 
 exports[`loader should call the function with the loader options: result 1`] = `
@@ -134,7 +123,7 @@ exports[`loader should has module.parent: warnings 1`] = `Array []`;
 
 exports[`loader should keep dependencies if errors are emitted: errors 1`] = `
 Array [
-  "ModuleError: Module Error (from /src/index.js):
+  "ModuleError: Module Error (from \`replaced original path\`):
 (Emitted value instead of an instance of Error) Error: Calling the function failed",
 ]
 `;
@@ -159,7 +148,7 @@ exports[`loader should keep dependencies if errors are emitted: warnings 1`] = `
 
 exports[`loader should not swallow function call errors (async): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: Module \\"/test/fixtures/error-call-async.js\\" throw error: Error: Calling the function failed asynchronously",
 ]
 `;
@@ -168,7 +157,7 @@ exports[`loader should not swallow function call errors (async): warnings 1`] = 
 
 exports[`loader should not swallow function call errors (sync): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: Module \\"/test/fixtures/error-call-sync.js\\" throw error: Error: Calling the function failed",
 ]
 `;
@@ -285,7 +274,7 @@ exports[`loader should recognize modules produced by babel: warnings 1`] = `Arra
 
 exports[`loader should report require() errors with a useful stacktrace: errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: Unable to execute \\"/test/fixtures/error-require.js\\": Error: This is a typical require() error",
 ]
 `;
@@ -294,7 +283,7 @@ exports[`loader should report require() errors with a useful stacktrace: warning
 
 exports[`loader should throw a useful error message if the exported function returns a wrong object (async): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: The returned result of module \\"/test/fixtures/error-return-async-wrong-obj.js\\" is not an object with a \\"code\\" property",
 ]
 `;
@@ -303,7 +292,7 @@ exports[`loader should throw a useful error message if the exported function ret
 
 exports[`loader should throw a useful error message if the exported function returns a wrong object (sync): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: The returned result of module \\"/test/fixtures/error-return-sync-wrong-obj.js\\" is not an object with a \\"code\\" property",
 ]
 `;
@@ -312,7 +301,7 @@ exports[`loader should throw a useful error message if the exported function ret
 
 exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (async): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: The returned code of module \\"/test/fixtures/error-return-async-invalid-code.js\\" is neither a string nor an instance of Buffer",
 ]
 `;
@@ -321,7 +310,7 @@ exports[`loader should throw a useful error message if the exported function ret
 
 exports[`loader should throw a useful error message if the exported function returns code that is neither a string nor an instanceof Buffer (sync): errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: The returned code of module \\"/test/fixtures/error-return-sync-invalid-code.js\\" is neither a string nor an instance of Buffer",
 ]
 `;
@@ -330,7 +319,7 @@ exports[`loader should throw a useful error message if the exported function ret
 
 exports[`loader should throw a useful error message if the module exports not a function: errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: Module \\"/test/fixtures/error-export-null.js\\" does not export a function as default",
 ]
 `;
