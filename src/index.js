@@ -1,7 +1,7 @@
 import Module from 'module';
 
-import loaderUtils from 'loader-utils';
-import validateOptions from 'schema-utils';
+import { getOptions } from 'loader-utils';
+import { validate } from 'schema-utils';
 
 import schema from './options.json';
 
@@ -67,9 +67,9 @@ function processResult(loaderContext, result) {
 }
 
 export default function loader(content) {
-  const options = loaderUtils.getOptions(this) || {};
+  const options = getOptions(this);
 
-  validateOptions(schema, options, {
+  validate(schema, options, {
     name: 'Val Loader',
     baseDataPath: 'options',
   });
