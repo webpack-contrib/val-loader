@@ -1,4 +1,4 @@
-import path from 'path';
+import path from "path";
 
 function rel(p) {
   return path.relative(process.cwd(), p);
@@ -6,10 +6,10 @@ function rel(p) {
 
 export default function helperLoader(content, map, meta) {
   const dependencies = this.getDependencies().map((dependency) =>
-    rel(dependency).replace(/\\/g, '/')
+    rel(dependency).replace(/\\/g, "/")
   );
   const contextDependencies = this.getContextDependencies().map((dependency) =>
-    rel(dependency).replace(/\\/g, '/')
+    rel(dependency).replace(/\\/g, "/")
   );
   const json = JSON.stringify(
     {
@@ -20,12 +20,12 @@ export default function helperLoader(content, map, meta) {
       contextDependencies,
     },
     null,
-    '  '
+    "  "
   )
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 
-  this.emitFile('val-loader.js', json, false);
+  this.emitFile("val-loader.js", json, false);
 
   return ``;
 }
