@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/webpack-contrib/val-loader/compare/v2.1.2...v3.0.0) (2020-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported webpack version is `5`
+
 ### [2.1.2](https://github.com/webpack-contrib/val-loader/compare/v2.1.1...v2.1.2) (2020-10-09)
 
 ### Chore

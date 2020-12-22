@@ -1,5 +1,5 @@
 {
-  "title": "Val Loader",
+  "title": "Val Loader options",
   "type": "object",
   "additionalProperties": true
 }
