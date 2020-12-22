@@ -1,9 +1,6 @@
-import Module from 'module';
+import Module from "module";
 
-import { getOptions } from 'loader-utils';
-import { validate } from 'schema-utils';
-
-import schema from './options.json';
+import schema from "./options.json";
 
 const parentModule = module;
 
@@ -23,7 +20,7 @@ function exec(code, loaderContext) {
 }
 
 function processResult(loaderContext, result) {
-  if (!result || typeof result !== 'object' || 'code' in result === false) {
+  if (!result || typeof result !== "object" || "code" in result === false) {
     loaderContext.callback(
       new Error(
         `The returned result of module "${loaderContext.resource}" is not an object with a "code" property`
@@ -34,7 +31,7 @@ function processResult(loaderContext, result) {
   }
 
   if (
-    typeof result.code !== 'string' &&
+    typeof result.code !== "string" &&
     result.code instanceof Buffer === false
   ) {
     loaderContext.callback(
@@ -67,12 +64,7 @@ function processResult(loaderContext, result) {
 }
 
 export default function loader(content) {
-  const options = getOptions(this);
-
-  validate(schema, options, {
-    name: 'Val Loader',
-    baseDataPath: 'options',
-  });
+  const options = this.getOptions(schema);
 
   let exports;
 
@@ -84,7 +76,7 @@ export default function loader(content) {
 
   const func = exports && exports.default ? exports.default : exports;
 
-  if (typeof func !== 'function') {
+  if (typeof func !== "function") {
     throw new Error(
       `Module "${this.resource}" does not export a function as default`
     );
@@ -98,7 +90,7 @@ export default function loader(content) {
     throw new Error(`Module "${this.resource}" throw error: ${error}`);
   }
 
-  if (result && typeof result.then === 'function') {
+  if (result && typeof result.then === "function") {
     const callback = this.async();
 
     result
