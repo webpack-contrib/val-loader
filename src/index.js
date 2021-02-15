@@ -69,16 +69,24 @@ function processResult(loaderContext, result) {
 
 export default function loader(content) {
   const options = this.getOptions(schema);
+  const { executableFile } = options;
+
+  let func;
 
   let exports;
 
-  try {
-    exports = exec(content, this);
-  } catch (error) {
-    throw new Error(`Unable to execute "${this.resource}": ${error}`);
-  }
+  if (executableFile) {
+    // eslint-disable-next-line global-require,import/no-dynamic-require
+    func = require(executableFile);
+  } else {
+    try {
+      exports = exec(content, this);
+    } catch (error) {
+      throw new Error(`Unable to execute "${this.resource}": ${error}`);
+    }
 
-  const func = exports && exports.default ? exports.default : exports;
+    func = exports && exports.default ? exports.default : exports;
+  }
 
   if (typeof func !== "function") {
     throw new Error(
@@ -89,7 +97,7 @@ export default function loader(content) {
   let result;
 
   try {
-    result = func(options, this);
+    result = func(options, this, content);
   } catch (error) {
     throw new Error(`Module "${this.resource}" throw error: ${error}`);
   }
