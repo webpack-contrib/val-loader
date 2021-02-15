@@ -51,6 +51,10 @@ function processResult(loaderContext, result) {
     loaderContext.addContextDependency(dep)
   );
 
+  (result.buildDependencies || []).forEach((dep) =>
+    loaderContext.addBuildDependency(dep)
+  );
+
   // Defaults to false which is a good default here because we assume that
   // results tend to be not cacheable when this loader is necessary
   loaderContext.cacheable(Boolean(result.cacheable));

@@ -11,6 +11,10 @@ export default function helperLoader(content, map, meta) {
   const contextDependencies = this.getContextDependencies().map((dependency) =>
     rel(dependency).replace(/\\/g, "/")
   );
+
+  const buildDependencies = Array.from(
+    this._module.buildInfo.buildDependencies || []
+  ).map((dependency) => rel(dependency).replace(/\\/g, "/"));
   const json = JSON.stringify(
     {
       content,
@@ -18,6 +22,7 @@ export default function helperLoader(content, map, meta) {
       meta,
       dependencies,
       contextDependencies,
+      buildDependencies,
     },
     null,
     "  "

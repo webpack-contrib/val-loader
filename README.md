@@ -121,6 +121,16 @@ watched by webpack for changes.
 
 Context dependencies can also be added using [`loaderContext.addContextDependency(directory: string)`](https://webpack.js.org/api/loaders/#thisaddcontextdependency).
 
+### `buildDependencies`
+
+Type: `Array[String]`
+Default: `[]`
+
+An array of absolute, native paths to directory dependencies that should be
+watched by webpack for changes.
+
+Build dependencies can also be added using `loaderContext.addBuildDependency(file: string)`.
+
 ### `cacheable`
 
 Type: `Boolean`

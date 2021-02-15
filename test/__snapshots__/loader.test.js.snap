@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should allow adding dependencies and contextDependencies via loader context: errors 1`] = `Array []`;
+exports[`loader should allow adding dependencies, contextDependencies and buildDependencies via loader context: errors 1`] = `Array []`;
 
-exports[`loader should allow adding dependencies and contextDependencies via loader context: result 1`] = `
+exports[`loader should allow adding dependencies, contextDependencies and buildDependencies via loader context: result 1`] = `
 "{
   \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
   \\"map\\": null,
@@ -14,11 +14,16 @@ exports[`loader should allow adding dependencies and contextDependencies via loa
   ],
   \\"contextDependencies\\": [
     \\"test/fixtures\\"
+  ],
+  \\"buildDependencies\\": [
+    \\"test/fixtures/args.js\\",
+    \\"test/fixtures/simple.js\\",
+    \\"test/fixtures\\"
   ]
 }"
 `;
 
-exports[`loader should allow adding dependencies and contextDependencies via loader context: warnings 1`] = `Array []`;
+exports[`loader should allow adding dependencies, contextDependencies and buildDependencies via loader context: warnings 1`] = `Array []`;
 
 exports[`loader should call the function with the loader options: errors 1`] = `Array []`;
 
@@ -38,7 +43,8 @@ exports[`loader should call the function with the loader options: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/args.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -54,7 +60,8 @@ exports[`loader should flag the module as cacheable if requested: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/cacheable.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -74,15 +81,16 @@ exports[`loader should flag the module as not cacheable by default: result 1`] =
   \\"dependencies\\": [
     \\"test/fixtures/simple.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
 exports[`loader should flag the module as not cacheable by default: warnings 1`] = `Array []`;
 
-exports[`loader should handle dependencies and contextDependencies of the module: errors 1`] = `Array []`;
+exports[`loader should handle dependencies, contextDependencies and buildDependencies of the module: errors 1`] = `Array []`;
 
-exports[`loader should handle dependencies and contextDependencies of the module: result 1`] = `
+exports[`loader should handle dependencies, contextDependencies and buildDependencies of the module: result 1`] = `
 "{
   \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
   \\"map\\": null,
@@ -94,11 +102,15 @@ exports[`loader should handle dependencies and contextDependencies of the module
   ],
   \\"contextDependencies\\": [
     \\"test/fixtures\\"
+  ],
+  \\"buildDependencies\\": [
+    \\"test/fixtures/args.js\\",
+    \\"test/fixtures/simple.js\\"
   ]
 }"
 `;
 
-exports[`loader should handle dependencies and contextDependencies of the module: warnings 1`] = `Array []`;
+exports[`loader should handle dependencies, contextDependencies and buildDependencies of the module: warnings 1`] = `Array []`;
 
 exports[`loader should has module.parent: errors 1`] = `Array []`;
 
@@ -115,7 +127,8 @@ exports[`loader should has module.parent: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/module-parent.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -140,7 +153,8 @@ exports[`loader should keep dependencies if errors are emitted: result 1`] = `
   ],
   \\"contextDependencies\\": [
     \\"test/fixtures\\"
-  ]
+  ],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -178,7 +192,8 @@ exports[`loader should pass on the code from the buffer fixture: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/buffer.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -194,7 +209,8 @@ exports[`loader should pass on the code from the presets/figlet fixture: result 
   \\"dependencies\\": [
     \\"test/fixtures/presets/figlet.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -210,7 +226,8 @@ exports[`loader should pass on the code from the presets/modernizr fixture: resu
   \\"dependencies\\": [
     \\"test/fixtures/presets/modernizr.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -230,7 +247,8 @@ exports[`loader should pass on the code from the simple fixture without options:
   \\"dependencies\\": [
     \\"test/fixtures/simple.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -250,7 +268,8 @@ exports[`loader should pass on the code from the simple fixture: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/simple.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -266,7 +285,8 @@ exports[`loader should recognize modules produced by babel: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/babel.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -340,7 +360,8 @@ exports[`loader should work the same if a promise is returned #2: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/promise-compex.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -360,7 +381,8 @@ exports[`loader should work the same if a promise is returned: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/promise.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
@@ -380,7 +402,8 @@ exports[`loader should work with async function: result 1`] = `
   \\"dependencies\\": [
     \\"test/fixtures/async-function.js\\"
   ],
-  \\"contextDependencies\\": []
+  \\"contextDependencies\\": [],
+  \\"buildDependencies\\": []
 }"
 `;
 
