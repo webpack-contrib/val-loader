@@ -106,7 +106,7 @@ describe("loader", () => {
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
 
-  it("should handle dependencies and contextDependencies of the module", async () => {
+  it("should handle dependencies, contextDependencies and buildDependencies of the module", async () => {
     const compiler = getCompiler("dependencies.js");
     const stats = await compile(compiler);
 
@@ -119,7 +119,7 @@ describe("loader", () => {
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
 
-  it("should allow adding dependencies and contextDependencies via loader context", async () => {
+  it("should allow adding dependencies, contextDependencies and buildDependencies via loader context", async () => {
     const compiler = getCompiler("dependencies-via-context.js");
     const stats = await compile(compiler);
 

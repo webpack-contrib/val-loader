@@ -106,8 +106,7 @@ next loader uses the same AST.
 Type: `Array[String]`
 Default: `[]`
 
-An array of absolute, native paths to file dependencies that should be watched
-by webpack for changes.
+An array of absolute, native paths to file dependencies that should be watched by webpack for changes.
 
 Dependencies can also be added using [`loaderContext.addDependency(file: string)`](https://webpack.js.org/api/loaders/#thisadddependency).
 
@@ -116,10 +115,18 @@ Dependencies can also be added using [`loaderContext.addDependency(file: string)
 Type: `Array[String]`
 Default: `[]`
 
-An array of absolute, native paths to directory dependencies that should be
-watched by webpack for changes.
+An array of absolute, native paths to directory dependencies that should be watched by webpack for changes.
 
 Context dependencies can also be added using [`loaderContext.addContextDependency(directory: string)`](https://webpack.js.org/api/loaders/#thisaddcontextdependency).
+
+### `buildDependencies`
+
+Type: `Array[String]`
+Default: `[]`
+
+An array of absolute, native paths to directory dependencies that should be watched by webpack for changes.
+
+Build dependencies can also be added using `loaderContext.addBuildDependency(file: string)`.
 
 ### `cacheable`
 
