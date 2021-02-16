@@ -69,34 +69,49 @@ function processResult(loaderContext, result) {
 
 export default function loader(content) {
   const options = this.getOptions(schema);
+  const { executableFile } = options;
+  const callback = this.async();
 
   let exports;
 
-  try {
-    exports = exec(content, this);
-  } catch (error) {
-    throw new Error(`Unable to execute "${this.resource}": ${error}`);
+  if (executableFile) {
+    try {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      exports = require(executableFile);
+    } catch (error) {
+      callback(new Error(`Unable to require "${executableFile}": ${error}`));
+      return;
+    }
+  } else {
+    try {
+      exports = exec(content, this);
+    } catch (error) {
+      callback(new Error(`Unable to execute "${this.resource}": ${error}`));
+      return;
+    }
   }
 
   const func = exports && exports.default ? exports.default : exports;
 
   if (typeof func !== "function") {
-    throw new Error(
-      `Module "${this.resource}" does not export a function as default`
+    callback(
+      new Error(
+        `Module "${this.resource}" does not export a function as default`
+      )
     );
+    return;
   }
 
   let result;
 
   try {
-    result = func(options, this);
+    result = func(options, this, content);
   } catch (error) {
-    throw new Error(`Module "${this.resource}" throw error: ${error}`);
+    callback(new Error(`Module "${this.resource}" throw error: ${error}`));
+    return;
   }
 
   if (result && typeof result.then === "function") {
-    const callback = this.async();
-
     result
       .then((res) => processResult(this, res))
       .catch((error) => {
