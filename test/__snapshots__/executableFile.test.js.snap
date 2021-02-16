@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`executableFile option should emit error: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Unable to require \\"/test/fixtures/error-require.js\\": Error: This is a typical require() error",
+  "ChunkRenderError: Cannot read property 'get' of undefined",
+]
+`;
+
+exports[`executableFile option should emit error: warnings 1`] = `Array []`;
+
 exports[`executableFile option should work: errors 1`] = `Array []`;
 
 exports[`executableFile option should work: result 1`] = `
