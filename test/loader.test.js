@@ -312,4 +312,30 @@ describe("loader", () => {
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
+
+  it("should work with commonjs code", async () => {
+    const compiler = getCompiler("code-es.js");
+    const stats = await compile(compiler);
+
+    expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
+        "result"
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+        "warnings"
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
+  });
+
+  it("should work with ES modules code", async () => {
+    const compiler = getCompiler("code-es.js");
+    const stats = await compile(compiler);
+
+    expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
+        "result"
+    );
+    expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
+        "warnings"
+    );
+    expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
+  });
 });
