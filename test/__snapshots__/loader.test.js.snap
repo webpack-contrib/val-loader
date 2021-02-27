@@ -392,7 +392,7 @@ exports[`loader should work with ES modules code: errors 1`] = `Array []`;
 
 exports[`loader should work with ES modules code: result 1`] = `
 "{
-  \\"content\\": \\"export default \\\\\\"hello world\\\\\\";\\",
+  \\"content\\": \\"module.exports = \\\\\\"hello world\\\\\\";\\",
   \\"map\\": {
     \\"isASourceMap\\": true
   },
@@ -400,7 +400,7 @@ exports[`loader should work with ES modules code: result 1`] = `
     \\"isAnAst\\": true
   },
   \\"dependencies\\": [
-    \\"test/fixtures/code-es.js\\"
+    \\"test/fixtures/code-commonjs.js\\"
   ],
   \\"contextDependencies\\": [],
   \\"buildDependencies\\": []

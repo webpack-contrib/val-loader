@@ -327,7 +327,7 @@ describe("loader", () => {
   });
 
   it("should work with ES modules code", async () => {
-    const compiler = getCompiler("code-es.js");
+    const compiler = getCompiler("code-commonjs.js");
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
