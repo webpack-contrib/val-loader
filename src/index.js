@@ -5,7 +5,7 @@ import schema from "./options.json";
 
 const parentModule = module;
 
-function exec(code, loaderContext) {
+function execute(code, loaderContext) {
   const { resource, context } = loaderContext;
 
   const module = new Module(resource, parentModule);
@@ -79,22 +79,29 @@ export default async function loader(content) {
     try {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       exports = require(executableFile);
-    } catch (error) {
-      let importESM;
-
+    } catch (requireError) {
       try {
-        // eslint-disable-next-line no-new-func
-        importESM = new Function("id", "return import(id);");
-      } catch (e) {
-        importESM = null;
-      }
+        let importESM;
 
-      if (error.code === "ERR_REQUIRE_ESM" && pathToFileURL && importESM) {
-        const urlForConfig = pathToFileURL(executableFile);
+        try {
+          // eslint-disable-next-line no-new-func
+          importESM = new Function("id", "return import(id);");
+        } catch (e) {
+          importESM = null;
+        }
 
-        exports = await importESM(urlForConfig);
-        exports = exports.default;
-      } else {
+        if (
+          requireError.code === "ERR_REQUIRE_ESM" &&
+          pathToFileURL &&
+          importESM
+        ) {
+          const urlForConfig = pathToFileURL(executableFile);
+
+          exports = await importESM(urlForConfig);
+        } else {
+          throw requireError;
+        }
+      } catch (error) {
         callback(new Error(`Unable to require "${executableFile}": ${error}`));
 
         return;
@@ -102,7 +109,7 @@ export default async function loader(content) {
     }
   } else {
     try {
-      exports = exec(content, this);
+      exports = execute(content, this);
     } catch (error) {
       callback(new Error(`Unable to execute "${this.resource}": ${error}`));
 

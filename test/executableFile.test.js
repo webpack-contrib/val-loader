@@ -47,7 +47,7 @@ describe("executableFile option", () => {
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
 
-  // TODO need improve jest
+  // TODO jest have not good support for ES modules for testing it, tested manually
   it.skip("should work with ES modules format", async () => {
     const compiler = getCompiler(
       "executableFileEntry.js",
