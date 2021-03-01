@@ -6,16 +6,14 @@ import schema from "./options.json";
 const parentModule = module;
 
 function execute(code, loaderContext) {
-  const { resource, context } = loaderContext;
-
-  const module = new Module(resource, parentModule);
+  const module = new Module(loaderContext.resource, parentModule);
 
   // eslint-disable-next-line no-underscore-dangle
   module.paths = Module._nodeModulePaths(context);
-  module.filename = resource;
+  module.filename = loaderContext.resource;
 
   // eslint-disable-next-line no-underscore-dangle
-  module._compile(code, resource);
+  module._compile(code, loaderContext.resource);
 
   return module.exports;
 }
