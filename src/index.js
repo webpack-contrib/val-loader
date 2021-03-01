@@ -1,20 +1,19 @@
 import Module from "module";
+import { pathToFileURL } from "url";
 
 import schema from "./options.json";
 
 const parentModule = module;
 
-function exec(code, loaderContext) {
-  const { resource, context } = loaderContext;
-
-  const module = new Module(resource, parentModule);
+function execute(code, loaderContext) {
+  const module = new Module(loaderContext.resource, parentModule);
 
   // eslint-disable-next-line no-underscore-dangle
-  module.paths = Module._nodeModulePaths(context);
-  module.filename = resource;
+  module.paths = Module._nodeModulePaths(loaderContext.context);
+  module.filename = loaderContext.resource;
 
   // eslint-disable-next-line no-underscore-dangle
-  module._compile(code, resource);
+  module._compile(code, loaderContext.resource);
 
   return module.exports;
 }
@@ -67,7 +66,7 @@ function processResult(loaderContext, result) {
   );
 }
 
-export default function loader(content) {
+export default async function loader(content) {
   const options = this.getOptions(schema);
   const { executableFile } = options;
   const callback = this.async();
@@ -78,15 +77,40 @@ export default function loader(content) {
     try {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       exports = require(executableFile);
-    } catch (error) {
-      callback(new Error(`Unable to require "${executableFile}": ${error}`));
-      return;
+    } catch (requireError) {
+      try {
+        let importESM;
+
+        try {
+          // eslint-disable-next-line no-new-func
+          importESM = new Function("id", "return import(id);");
+        } catch (e) {
+          importESM = null;
+        }
+
+        if (
+          requireError.code === "ERR_REQUIRE_ESM" &&
+          pathToFileURL &&
+          importESM
+        ) {
+          const urlForConfig = pathToFileURL(executableFile);
+
+          exports = await importESM(urlForConfig);
+        } else {
+          throw requireError;
+        }
+      } catch (error) {
+        callback(new Error(`Unable to require "${executableFile}": ${error}`));
+
+        return;
+      }
     }
   } else {
     try {
-      exports = exec(content, this);
+      exports = execute(content, this);
     } catch (error) {
       callback(new Error(`Unable to execute "${this.resource}": ${error}`));
+
       return;
     }
   }

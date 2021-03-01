@@ -10,9 +10,9 @@ Error: Unable to require \\"/test/fixtures/error-require.js\\": Error: This is a
 
 exports[`executableFile option should emit error: warnings 1`] = `Array []`;
 
-exports[`executableFile option should work: errors 1`] = `Array []`;
+exports[`executableFile option should work with commonjs format: errors 1`] = `Array []`;
 
-exports[`executableFile option should work: result 1`] = `
+exports[`executableFile option should work with commonjs format: result 1`] = `
 "{
   \\"content\\": \\"module.exports = 315360000000\\",
   \\"map\\": null,
@@ -25,4 +25,4 @@ exports[`executableFile option should work: result 1`] = `
 }"
 `;
 
-exports[`executableFile option should work: warnings 1`] = `Array []`;
+exports[`executableFile option should work with commonjs format: warnings 1`] = `Array []`;
