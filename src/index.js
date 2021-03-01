@@ -9,7 +9,7 @@ function execute(code, loaderContext) {
   const module = new Module(loaderContext.resource, parentModule);
 
   // eslint-disable-next-line no-underscore-dangle
-  module.paths = Module._nodeModulePaths(context);
+  module.paths = Module._nodeModulePaths(loaderContext.context);
   module.filename = loaderContext.resource;
 
   // eslint-disable-next-line no-underscore-dangle
