@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/webpack-contrib/val-loader/compare/v3.0.0...v3.1.0) (2021-03-01)
+
+
+### Features
+
+* added the `buildDependensies` option ([#63](https://github.com/webpack-contrib/val-loader/issues/63)) ([04be3eb](https://github.com/webpack-contrib/val-loader/commit/04be3ebd9515358929c661b3c9db98ba3d870ac1))
+* added the `executableFile` option ([#65](https://github.com/webpack-contrib/val-loader/issues/65)) ([b46090f](https://github.com/webpack-contrib/val-loader/commit/b46090f323e3d2dcd75cbd552bd9447f98fd63e8))
+* support ECMA modules for the `executableFile` option ([#66](https://github.com/webpack-contrib/val-loader/issues/66)) ([1e6675f](https://github.com/webpack-contrib/val-loader/commit/1e6675fdf325c0973b1314fa3ad7984eaba197b9))
+
 ## [3.0.0](https://github.com/webpack-contrib/val-loader/compare/v2.1.2...v3.0.0) (2020-12-22)
 
 
