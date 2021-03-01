@@ -7,7 +7,6 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
-/jest*
 /dist
 /local
 /reports

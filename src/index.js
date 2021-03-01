@@ -1,4 +1,5 @@
 import Module from "module";
+import { pathToFileURL } from "url";
 
 import schema from "./options.json";
 
@@ -67,7 +68,7 @@ function processResult(loaderContext, result) {
   );
 }
 
-export default function loader(content) {
+export default async function loader(content) {
   const options = this.getOptions(schema);
   const { executableFile } = options;
   const callback = this.async();
@@ -79,14 +80,32 @@ export default function loader(content) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       exports = require(executableFile);
     } catch (error) {
-      callback(new Error(`Unable to require "${executableFile}": ${error}`));
-      return;
+      let importESM;
+
+      try {
+        // eslint-disable-next-line no-new-func
+        importESM = new Function("id", "return import(id);");
+      } catch (e) {
+        importESM = null;
+      }
+
+      if (error.code === "ERR_REQUIRE_ESM" && pathToFileURL && importESM) {
+        const urlForConfig = pathToFileURL(executableFile);
+
+        exports = await importESM(urlForConfig);
+        exports = exports.default;
+      } else {
+        callback(new Error(`Unable to require "${executableFile}": ${error}`));
+
+        return;
+      }
     }
   } else {
     try {
       exports = exec(content, this);
     } catch (error) {
       callback(new Error(`Unable to execute "${this.resource}": ${error}`));
+
       return;
     }
   }
