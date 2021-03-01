@@ -318,10 +318,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-        "result"
+      "result"
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-        "warnings"
+      "warnings"
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -331,10 +331,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-        "result"
+      "result"
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-        "warnings"
+      "warnings"
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
