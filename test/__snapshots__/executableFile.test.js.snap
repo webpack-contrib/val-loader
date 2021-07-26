@@ -4,7 +4,8 @@ exports[`executableFile option should emit error: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
 Error: Unable to require \\"/test/fixtures/error-require.js\\": Error: This is a typical require() error",
-  "ChunkRenderError: Cannot read property 'get' of undefined",
+  "ChunkRenderError: Cannot read property 'get' of undefined
+during rendering of asset /test/helpers/helperLoader.js!/src/index.js??ruleSet[1].rules[0].rules[1]!/test/fixtures/data.json",
 ]
 `;
 
