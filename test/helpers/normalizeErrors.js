@@ -11,7 +11,11 @@ function removeCWD(str) {
 
   return str
     .replace(/\(from .*?\)/, "(from `replaced original path`)")
-    .replace(new RegExp(cwd, "g"), "");
+    .replace(new RegExp(cwd, "g"), "")
+    .replace(
+      /Cannot read property 'get' of undefined/,
+      "Cannot read properties of undefined (reading 'get')"
+    );
 }
 
 export default (errors) =>
