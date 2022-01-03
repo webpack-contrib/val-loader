@@ -14,7 +14,7 @@ function removeCWD(str) {
     .replace(new RegExp(cwd, "g"), "")
     .replace(
       /Cannot read property 'get' of undefined/,
-      " Cannot read properties of undefined (reading 'get')"
+      "Cannot read properties of undefined (reading 'get')"
     );
 }
 
