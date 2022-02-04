@@ -50,11 +50,11 @@ Then add the loader to your `webpack` config. For example:
 
 **target-file.js**
 
-```js
+````js
 module.exports = (options, loaderContext) => {
   return { code: "module.exports = 42;" };
 };
-```
+
 
 **webpack.config.js**
 
@@ -73,7 +73,7 @@ module.exports = {
     ],
   },
 };
-```
+````
 
 **src/entry.js**
 
