@@ -31,7 +31,19 @@ The target module is called with two arguments: `(options, loaderContext)`
 To begin, you'll need to install `val-loader`:
 
 ```console
-$ npm install val-loader --save-dev
+npm install val-loader --save-dev
+```
+
+or
+
+```console
+yarn add -D val-loader
+```
+
+or
+
+```console
+pnpm add -D val-loader
 ```
 
 Then add the loader to your `webpack` config. For example:
