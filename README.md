@@ -31,7 +31,15 @@ The target module is called with two arguments: `(options, loaderContext)`
 To begin, you'll need to install `val-loader`:
 
 ```console
-$ npm install val-loader --save-dev
+npm install val-loader --save-dev
+```
+
+```console
+yarn add -D val-loader
+```
+
+```console
+pnpm add -D val-loader
 ```
 
 Then add the loader to your `webpack` config. For example:
@@ -73,13 +81,16 @@ And run `webpack` via your preferred method.
 
 ## Options
 
-|                  Name                   |    Type    |   Default   | Description                                   |
-| :-------------------------------------: | :--------: | :---------: | :-------------------------------------------- |
-| **[`executableFile`](#executableFile)** | `{String}` | `undefined` | Allows to specify path to the executable file |
+- **[`executableFile`](#executableFile)**
 
-### executableFile
+### `executableFile`
 
-Type: `String`
+Type:
+
+```ts
+type executableFile = string;
+```
+
 Default: `undefined`
 
 Allows to specify path to the executable file
@@ -144,7 +155,12 @@ contain any number of additional properties.
 
 ### `code`
 
-Type: `String|Buffer`
+Type:
+
+```ts
+type code = string | Buffer;
+```
+
 Default: `undefined`
 _Required_
 
@@ -152,14 +168,24 @@ Code passed along to webpack or the next loader that will replace the module.
 
 ### `sourceMap`
 
-Type: `Object`
+Type:
+
+```ts
+type sourceMap = object;
+```
+
 Default: `undefined`
 
 A source map passed along to webpack or the next loader.
 
 ### `ast`
 
-Type: `Array[Object]`
+Type:
+
+```ts
+type ast = Array<object>;
+```
+
 Default: `undefined`
 
 An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
@@ -168,7 +194,12 @@ next loader uses the same AST.
 
 ### `dependencies`
 
-Type: `Array[String]`
+Type:
+
+```ts
+type dependencies = Array<string>;
+```
+
 Default: `[]`
 
 An array of absolute, native paths to file dependencies that should be watched by webpack for changes.
@@ -177,7 +208,12 @@ Dependencies can also be added using [`loaderContext.addDependency(file: string)
 
 ### `contextDependencies`
 
-Type: `Array[String]`
+Type:
+
+```ts
+type contextDependencies = Array<string>;
+```
+
 Default: `[]`
 
 An array of absolute, native paths to directory dependencies that should be watched by webpack for changes.
@@ -186,7 +222,12 @@ Context dependencies can also be added using [`loaderContext.addContextDependenc
 
 ### `buildDependencies`
 
-Type: `Array[String]`
+Type:
+
+```ts
+type buildDependencies = Array<string>;
+```
+
 Default: `[]`
 
 An array of absolute, native paths to directory dependencies that should be watched by webpack for changes.
@@ -195,7 +236,12 @@ Build dependencies can also be added using `loaderContext.addBuildDependency(fil
 
 ### `cacheable`
 
-Type: `Boolean`
+Type:
+
+```ts
+type cacheable = boolean;
+```
+
 Default: `false`
 
 If `true`, specifies that the code can be re-used in watch mode if none of the
