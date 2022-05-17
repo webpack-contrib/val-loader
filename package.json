@@ -1,6 +1,6 @@
 {
   "name": "val-loader",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "val loader module for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/val-loader",
