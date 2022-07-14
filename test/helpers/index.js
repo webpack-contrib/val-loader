@@ -1,11 +1,11 @@
-import compile from "./compile";
-import execute from "./execute";
-import getCompiler from "./getCompiler";
-import helperLoader from "./helperLoader";
-import normalizeErrors from "./normalizeErrors";
-import readAsset from "./readAsset";
+const compile = require("./compile");
+const execute = require("./execute");
+const getCompiler = require("./getCompiler");
+const helperLoader = require("./helperLoader");
+const normalizeErrors = require("./normalizeErrors");
+const readAsset = require("./readAsset");
 
-export {
+module.exports = {
   compile,
   execute,
   getCompiler,

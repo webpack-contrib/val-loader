@@ -1,4 +1,9 @@
-import { getCompiler, compile, readAsset, normalizeErrors } from "./helpers";
+const {
+  getCompiler,
+  compile,
+  readAsset,
+  normalizeErrors,
+} = require("./helpers");
 
 describe("loader", () => {
   it("should pass on the code from the simple fixture", async () => {

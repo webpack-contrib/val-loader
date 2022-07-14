@@ -1,6 +1,11 @@
-import path from "path";
+const path = require("path");
 
-import { getCompiler, compile, readAsset, normalizeErrors } from "./helpers";
+const {
+  getCompiler,
+  compile,
+  readAsset,
+  normalizeErrors,
+} = require("./helpers");
 
 describe("executableFile option", () => {
   it("should work with commonjs format", async () => {

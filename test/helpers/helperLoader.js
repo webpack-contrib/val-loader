@@ -1,10 +1,10 @@
-import path from "path";
+const path = require("path");
 
 function rel(p) {
   return path.relative(process.cwd(), p);
 }
 
-export default function helperLoader(content, map, meta) {
+module.exports = function helperLoader(content, map, meta) {
   const dependencies = this.getDependencies().map((dependency) =>
     rel(dependency).replace(/\\/g, "/")
   );
@@ -33,4 +33,4 @@ export default function helperLoader(content, map, meta) {
   this.emitFile("val-loader.js", json, false);
 
   return ``;
-}
+};
