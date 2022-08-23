@@ -1,7 +1,7 @@
-import Module from "module";
-import { pathToFileURL } from "url";
+const Module = require("module");
+const { pathToFileURL } = require("url");
 
-import schema from "./options.json";
+const schema = require("./options.json");
 
 const parentModule = module;
 
@@ -66,7 +66,7 @@ function processResult(loaderContext, result) {
   );
 }
 
-export default async function loader(content) {
+module.exports = async function loader(content) {
   const options = this.getOptions(schema);
   const { executableFile } = options;
   const callback = this.async();
@@ -147,4 +147,4 @@ export default async function loader(content) {
 
   // No return necessary because processResult calls this.callback()
   processResult(this, result);
-}
+};
