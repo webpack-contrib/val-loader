@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/webpack-contrib/val-loader/compare/v5.0.0...v5.0.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* compatibility with webpack cache ([#122](https://github.com/webpack-contrib/val-loader/issues/122)) ([41c08e3](https://github.com/webpack-contrib/val-loader/commit/41c08e3056741f9e0be1e4e45dc607a83d88b4e7))
+
 ## [5.0.0](https://github.com/webpack-contrib/val-loader/compare/v4.0.0...v5.0.0) (2022-05-17)
 
 
