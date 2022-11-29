@@ -10,7 +10,8 @@ function execute(code, loaderContext) {
 
   // eslint-disable-next-line no-underscore-dangle
   module.paths = Module._nodeModulePaths(loaderContext.context);
-  module.filename = loaderContext.resource;
+  // Use the path without webpack-specific parts (`resourceQuery` or `resourceFragment`)
+  module.filename = loaderContext.resourcePath;
 
   // eslint-disable-next-line no-underscore-dangle
   module._compile(code, loaderContext.resource);
