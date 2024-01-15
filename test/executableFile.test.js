@@ -22,7 +22,7 @@ describe("executableFile option", () => {
                     executableFile: path.resolve(
                       __dirname,
                       "fixtures",
-                      "executableFile.js"
+                      "executableFile.js",
                     ),
                   },
                 },
@@ -34,15 +34,15 @@ describe("executableFile option", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -67,7 +67,7 @@ describe("executableFile option", () => {
                     executableFile: path.resolve(
                       __dirname,
                       "fixtures",
-                      "executableFileES.mjs"
+                      "executableFileES.mjs",
                     ),
                   },
                 },
@@ -79,15 +79,15 @@ describe("executableFile option", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -111,7 +111,7 @@ describe("executableFile option", () => {
                     executableFile: path.resolve(
                       __dirname,
                       "fixtures",
-                      "error-require.js"
+                      "error-require.js",
                     ),
                   },
                 },
@@ -123,12 +123,12 @@ describe("executableFile option", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });

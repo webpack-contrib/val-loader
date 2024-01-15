@@ -23,8 +23,8 @@ function processResult(loaderContext, result) {
   if (!result || typeof result !== "object" || "code" in result === false) {
     loaderContext.callback(
       new Error(
-        `The returned result of module "${loaderContext.resource}" is not an object with a "code" property`
-      )
+        `The returned result of module "${loaderContext.resource}" is not an object with a "code" property`,
+      ),
     );
 
     return;
@@ -36,23 +36,23 @@ function processResult(loaderContext, result) {
   ) {
     loaderContext.callback(
       new Error(
-        `The returned code of module "${loaderContext.resource}" is neither a string nor an instance of Buffer`
-      )
+        `The returned code of module "${loaderContext.resource}" is neither a string nor an instance of Buffer`,
+      ),
     );
 
     return;
   }
 
   (result.dependencies || []).forEach((dep) =>
-    loaderContext.addDependency(dep)
+    loaderContext.addDependency(dep),
   );
 
   (result.contextDependencies || []).forEach((dep) =>
-    loaderContext.addContextDependency(dep)
+    loaderContext.addContextDependency(dep),
   );
 
   (result.buildDependencies || []).forEach((dep) =>
-    loaderContext.addBuildDependency(dep)
+    loaderContext.addBuildDependency(dep),
   );
 
   // Defaults to false which is a good default here because we assume that
@@ -63,7 +63,7 @@ function processResult(loaderContext, result) {
     null,
     result.code,
     result.sourceMap || null,
-    result.ast || null
+    result.ast || null,
   );
 }
 
@@ -121,8 +121,8 @@ export default async function loader(content) {
   if (typeof func !== "function") {
     callback(
       new Error(
-        `Module "${this.resource}" does not export a function as default`
-      )
+        `Module "${this.resource}" does not export a function as default`,
+      ),
     );
     return;
   }

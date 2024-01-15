@@ -6,10 +6,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -20,10 +20,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -33,10 +33,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -46,10 +46,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -68,10 +68,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -81,12 +81,12 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     // In webpack@5 modules is Set
     expect([...stats.compilation.modules][0].buildInfo.cacheable).toBe(false);
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -96,12 +96,12 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     // In webpack@5 modules is Set
     expect([...stats.compilation.modules][0].buildInfo.cacheable).toBe(true);
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -111,10 +111,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -124,10 +124,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -137,10 +137,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -150,10 +150,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -163,10 +163,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -176,10 +176,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -189,10 +189,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -202,7 +202,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -212,7 +212,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -222,7 +222,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -232,7 +232,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -242,7 +242,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -252,7 +252,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -262,7 +262,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -272,7 +272,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -290,10 +290,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -305,10 +305,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -318,10 +318,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
@@ -331,10 +331,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("val-loader.js", compiler, stats)).toMatchSnapshot(
-      "result"
+      "result",
     );
     expect(normalizeErrors(stats.compilation.warnings)).toMatchSnapshot(
-      "warnings"
+      "warnings",
     );
     expect(normalizeErrors(stats.compilation.errors)).toMatchSnapshot("errors");
   });
