@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/webpack-contrib/val-loader/compare/v5.0.1...v6.0.0) (2024-01-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported Node.js version is `18.12.0` ([#151](https://github.com/webpack-contrib/val-loader/issues/151)) ([ed762dc](https://github.com/webpack-contrib/val-loader/commit/ed762dcacd5aec8f462db8a7fa0da3c8d001f4b0))
+
 ### [5.0.1](https://github.com/webpack-contrib/val-loader/compare/v5.0.0...v5.0.1) (2022-11-29)
 
 
