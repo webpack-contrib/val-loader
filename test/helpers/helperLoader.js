@@ -6,14 +6,14 @@ function rel(p) {
 
 export default function helperLoader(content, map, meta) {
   const dependencies = this.getDependencies().map((dependency) =>
-    rel(dependency).replace(/\\/g, "/")
+    rel(dependency).replace(/\\/g, "/"),
   );
   const contextDependencies = this.getContextDependencies().map((dependency) =>
-    rel(dependency).replace(/\\/g, "/")
+    rel(dependency).replace(/\\/g, "/"),
   );
 
   const buildDependencies = Array.from(
-    this._module.buildInfo.buildDependencies || []
+    this._module.buildInfo.buildDependencies || [],
   ).map((dependency) => rel(dependency).replace(/\\/g, "/"));
   const json = JSON.stringify(
     {
@@ -25,7 +25,7 @@ export default function helperLoader(content, map, meta) {
       buildDependencies,
     },
     null,
-    "  "
+    "  ",
   )
     .replace(/\u2028/g, "\\u2028")
     .replace(/\u2029/g, "\\u2029");

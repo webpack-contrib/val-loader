@@ -131,7 +131,7 @@ module.exports = {
               executableFile: path.resolve(
                 __dirname,
                 "fixtures",
-                "executableFile.js"
+                "executableFile.js",
               ),
             },
           },

@@ -14,11 +14,11 @@ function removeCWD(str) {
     .replace(new RegExp(cwd, "g"), "")
     .replace(
       /Cannot read property 'get' of undefined/,
-      "Cannot read properties of undefined (reading 'get')"
+      "Cannot read properties of undefined (reading 'get')",
     );
 }
 
 export default (errors) =>
   errors.map((error) =>
-    removeCWD(error.toString().split("\n").slice(0, 2).join("\n"))
+    removeCWD(error.toString().split("\n").slice(0, 2).join("\n")),
   );
