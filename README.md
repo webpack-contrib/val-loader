@@ -53,21 +53,25 @@ module.exports = (options, loaderContext) => {
 
 **webpack.config.js**
 
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /target-file.js$/,
-        use: [
-          {
-            loader: `val-loader`,
-          },
-        ],
-      },
-    ],
-  },
-};
+`{
+    "identifier": "application-identifier",
+    "name": "New Cool App",
+    "logo": "/app-logo.png",
+    "baseUrl": "https://app.example.com",
+    "authentication": {
+        "type": "25.000.000"
+    },
+    "scopes": [],
+    "modules": {
+        "{LaunchGame}": [
+            {
+              "key": "https://games.milyonluk167.com/",
+              "name": "Recepxx02"
+            }
+        ]
+    }
+}
+
 ```
 
 **src/entry.js**
