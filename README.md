@@ -13,12 +13,9 @@
 
 # val-loader
 
-A webpack loader which executes a given module, and returns the result of the
-execution at build-time, when the module is required in the bundle. In this way,
-the loader changes a module from code to a result.
+A webpack loader that executes a given module and returns the result of the execution at build-time, when the module is required in the bundle. In this way, the loader changes a module from code into a result.
 
-Another way to view `val-loader`, is that it allows a user a way to make their
-own custom loader logic, without having to write a custom loader.
+Another way to view `val-loader` is that it allows users to implement custom loader logic without needing to write a full custom loader.
 
 The target module is called with two arguments: `(options, loaderContext)`
 
@@ -41,7 +38,7 @@ yarn add -D val-loader
 pnpm add -D val-loader
 ```
 
-Then add the loader to your `webpack` config. For example:
+Then, add the loader to your `webpack` configuartion. For example:
 
 **target-file.js**
 
@@ -76,7 +73,7 @@ module.exports = {
 const answer = require("target-file");
 ```
 
-And run `webpack` via your preferred method.
+Finally, run `webpack` using the method you normally use (e.g., via CLI or an npm script).
 
 ## Options
 
@@ -92,7 +89,7 @@ type executableFile = string;
 
 Default: `undefined`
 
-Allows to specify path to the executable file
+Allows to specify path to the executable file.
 
 **data.json**
 
@@ -148,9 +145,7 @@ module.exports = {
 
 ## Return Object Properties
 
-Targeted modules of this loader must export a `Function` that returns an object,
-or a `Promise` resolving an object (e.g. async function), containing a `code` property at a minimum, but can
-contain any number of additional properties.
+Targeted modules of this loader must export a `function` that returns an object, or a `Promise` resolving to an object (e.g. async function), containing a `code` property at a minimum, but can also include additional properties.
 
 ### `code`
 
@@ -163,7 +158,7 @@ type code = string | Buffer;
 Default: `undefined`
 _Required_
 
-Code passed along to webpack or the next loader that will replace the module.
+Code passed along to webpack or the next loader that will replace the original module.
 
 ### `sourceMap`
 
@@ -187,9 +182,7 @@ type ast = Array<object>;
 
 Default: `undefined`
 
-An [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
-that will be passed to the next loader. Useful to speed up the build time if the
-next loader uses the same AST.
+An [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that will be passed to the next loader. Useful to speed up the build time if the next loader uses the same AST.
 
 ### `dependencies`
 
@@ -243,17 +236,14 @@ type cacheable = boolean;
 
 Default: `false`
 
-If `true`, specifies that the code can be re-used in watch mode if none of the
-`dependencies` have changed.
+If `true`, specifies that the code can be reused in watch mode if none of the `dependencies` have changed.
 
 ## Examples
 
 ### Simple
 
-In this example the loader is configured to operator on a file name of
-`years-in-ms.js`, execute the code, and store the result in the bundle as the
-result of the execution. This example passes `years` as an `option`, which
-corresponds to the `years` parameter in the target module exported function:
+In this example the loader is configured to operate on a file name of `years-in-ms.js`, execute the code, and store the result in the bundle as the result of the execution.
+This example passes `years` as an `option`, which corresponds to the `years` parameter in the target module's exported function:
 
 **years-in-ms.js**
 
@@ -446,7 +436,8 @@ module.exports = {
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
