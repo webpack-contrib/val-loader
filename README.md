@@ -38,7 +38,7 @@ yarn add -D val-loader
 pnpm add -D val-loader
 ```
 
-Then, add the loader to your `webpack` configuartion. For example:
+Then, add the loader to your `webpack` configuration. For example:
 
 **target-file.js**
 
